@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useRouter, useParams } from "next/navigation";
+import "../../form.css";
 
 export default function EditPage() {
   const params = useParams();
@@ -13,9 +14,9 @@ export default function EditPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ id: params.id, name, price, quantity });
-    setSuccess(true);
-    setTimeout(() => router.push("/"), 1200); // กลับหน้า List หลังแจ้งเตือน
+    console.log({ name, price, quantity });
+    alert("แก้ไขสำเร็จ!");
+    router.push("/"); // กลับหน้า List
   };
 
   return (
@@ -54,8 +55,6 @@ export default function EditPage() {
           บันทึกการแก้ไข
         </button>
       </form>
-
-      {success && <p className="form-success">✅ แก้ไขสำเร็จ!</p>}
     </div>
   );
 }

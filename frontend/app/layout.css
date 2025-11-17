@@ -5,7 +5,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #f3f4f6; /* เทาอ่อนเหมือน bg-gray-50 */
+  background-color: #f3f4f6;
   color: #171717;
   display: flex;
   flex-direction: column;
@@ -15,14 +15,19 @@ body {
 
 /* Header */
 .header {
-  background: linear-gradient(to right, #1e40af, #3b82f6); /* ไล่สีฟ้า */
+  background: linear-gradient(to right, #1e40af, #3b82f6);
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.8rem;
   padding: 16px;
-  border-radius: 8px;
+  border-radius: 0; /* เอา border-radius ออกจะสวยกว่าเมื่อ fixed */
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  
+  /* ทำให้ header ติดบน */
+  position: sticky; /* หรือใช้ fixed */
+  top: 0;
+  z-index: 1000; /* ให้ header อยู่เหนือ content */
 }
 
 /* Navbar / Search */
@@ -37,8 +42,9 @@ body {
   justify-content: center;
   gap: 16px;
   margin-top: 16px;
-  width: 75%; /* กินครึ่งหน้าจอ */
-  margin: 16px auto 0; /* จัดกลาง และมีช่องว่างบน */
+  width: 75%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .navbar input {
@@ -61,6 +67,7 @@ body {
   flex: 1;
   gap: 24px;
   padding: 24px;
+  margin-top: 16px; /* เว้นช่องว่างด้านบน header ถ้า sticky */
 }
 
 /* Sidebar */
@@ -80,8 +87,8 @@ body {
 
 .sidebar li {
   margin-bottom: 12px;
-  padding-bottom: 8px;       /* เว้นช่องว่างก่อนเส้น */
-  border-bottom: 1px solid #4d4d4d; /* เส้นแบ่งสีเทาอ่อน */
+  padding-bottom: 8px;
+  border-bottom: 1px solid #4d4d4d;
 }
 
 .sidebar a {
@@ -105,12 +112,10 @@ body {
 
 /* Footer */
 .footer {
-  background-color: #6b7280; 
+  background-color: #a8aeb9; 
   color: white;
   text-align: center;
   padding: 16px;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
   box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
   margin-top: 24px;
 }

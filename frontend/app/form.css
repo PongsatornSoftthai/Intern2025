@@ -65,10 +65,4 @@
   background-color: #15803d;
 }
 
-/* สำหรับการแจ้งเตือนสำเร็จ */
-.form-success {
-  color: #16a34a;
-  text-align: center;
-  font-weight: 600;
-  margin-top: 12px;
-}
+

@@ -1,12 +1,19 @@
 "use client";
 import Link from "next/link";
 import { useState } from "react";
-import "./page.css"; // 
+import "./page.css"; 
 
-type Item = { id: number; name: string; price: number; quantity: number };
+// ใช้ interface แทน type
+interface Item {
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}
 
 export default function ListPage() {
-  const [items, setItems] = useState<Item[]>([
+  // กำหนด useState เป็น Item[]
+  const [items] = useState<Item[]>([
     { id: 1, name: "เจ้าชายน้อย", price: 199, quantity: 12 },
     { id: 2, name: "ปีศาจตัวนั้น คือฉันเอง", price: 360, quantity: 9 },
     { id: 3, name: "ใครรู้ คนนั้นรอด", price: 225, quantity: 99 },
@@ -14,12 +21,9 @@ export default function ListPage() {
     { id: 5, name: "จิตวิทยาสายดาร์ก", price: 250, quantity: 63 },
   ]);
 
-  const handleDelete = (id: number) => {
-    setItems(items.filter((item) => item.id !== id));
-  };
-
   return (
     <div>
+      {/* Header / Title + Add Button */}
       <div className="header-title">
         <h2>รายการหนังสือ</h2>
         <Link href="/add" className="btn btn-add">
@@ -27,6 +31,7 @@ export default function ListPage() {
         </Link>
       </div>
 
+      {/* Table */}
       <div className="table-container">
         <table className="table">
           <thead>
@@ -48,8 +53,7 @@ export default function ListPage() {
                 <td>
                   <Link href={`/edit/${item.id}`} className="btn btn-edit">
                     แก้ไข
-                  </Link>{" "}
-
+                  </Link>
                 </td>
               </tr>
             ))}
