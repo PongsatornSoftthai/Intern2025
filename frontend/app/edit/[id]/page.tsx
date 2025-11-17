@@ -10,13 +10,15 @@ export default function EditPage() {
   const [name, setName] = useState("Example Item");
   const [price, setPrice] = useState(10);
   const [quantity, setQuantity] = useState(10);
+  const [author, setAuthor] = useState("Example Author");
+  const [releaseDate, setReleaseDate] = useState("2023-01-01");
   const [success, setSuccess] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, price, quantity });
+    console.log({ name, price, quantity, author, releaseDate });
     alert("แก้ไขสำเร็จ!");
-    router.push("/"); // กลับหน้า List
+    router.push("/book"); // กลับหน้า List
   };
 
   return (
@@ -48,6 +50,24 @@ export default function EditPage() {
             type="number"
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>ผู้แต่ง</label>
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>วันที่ผลิต</label>
+          <input
+            type="date"
+            value={releaseDate}
+            onChange={(e) => setReleaseDate(e.target.value)}
           />
         </div>
 

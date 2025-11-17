@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <aside className="sidebar">
             <ul>
               <li><Link href="/">หน้าหลัก</Link></li>
-              <li><Link href="#S">เกี่ยวกับ</Link></li>
+              <li><Link href="/book">หนังสือ</Link></li>
             </ul>
           </aside>
 

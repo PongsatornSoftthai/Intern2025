@@ -8,13 +8,15 @@ export default function AddPage() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(10);
   const [quantity, setQuantity] = useState(0);
+  const [author, setAuthor] = useState("");
+  const [releaseDate, setReleaseDate] = useState("");
   const router = useRouter();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, price, quantity });
+    console.log({ name, price: Number(price.toFixed(2)), quantity, author, releaseDate });
     alert("เพิ่มสำเร็จ!");
-    router.push("/"); // กลับหน้า List
+    router.push("/book"); // กลับหน้า List
   };
 
   return (
@@ -38,6 +40,7 @@ export default function AddPage() {
             value={price}
             onChange={(e) => setPrice(Number(e.target.value))}
             min="0"
+            step="0.01"
             required
           />
         </div>
@@ -49,6 +52,26 @@ export default function AddPage() {
             value={quantity}
             onChange={(e) => setQuantity(Number(e.target.value))}
             min="0"
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>ผู้แต่ง</label>
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label>วันที่ผลิต</label>
+          <input
+            type="date"
+            value={releaseDate}
+            onChange={(e) => setReleaseDate(e.target.value)}
             required
           />
         </div>
