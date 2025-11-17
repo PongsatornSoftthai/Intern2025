@@ -1,70 +1,79 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
-import styles from "./HomePage.module.css";
 import Link from "next/link";
+import styles from "./HomePage.module.css";
+import { MdEdit } from "react-icons/md";
 
-//กำหนดรูปแบบหรือโครงสร้างของข้อมูลนักเรียน
-interface Student {
-  id: number;
-  name: string;
-  math: number;
-  science: number;
-  english: number;
-  social: number;
-  thai: number;
+
+// --------------------------
+// Interface ตั้งชื่อตามกฎ
+// --------------------------
+interface IStudent {
+  nId: number;
+  sName: string;
+  nMath: number;
+  nScience: number;
+  nEnglish: number;
+  nSocial: number;
+  nThai: number;
 }
 
 export default function Home() {
+  // --------------------------
+  // useState ตั้งชื่อตามค่าที่เก็บ
+  // --------------------------
+  const [lstStudents, setLstStudents] = useState<IStudent[]>([]);
 
-  const [students, setStudents] = useState<Student[]>([]); //สถานะเก็บข้อมูลนักเรียน
-
-  //ใช้ useEffect เพื่อโหลดข้อมูลนักเรียนเมื่อ component ถูกสร้างขึ้น
+  // --------------------------
+  // useEffect โหลดข้อมูล
+  // --------------------------
   useEffect(() => {
-
-    //จำลองข้อมูล (ภายหลังจะ fetch จาก API หรือฐานข้อมูล)
-    const mockData: Student[] = [
-      { id: 1, name: "สมชาย ใจดี", math: 85, science: 90, english: 88, social: 92, thai: 87 },
-      { id: 2, name: "สมหญิง แสนสวย", math: 78, science: 82, english: 80, social: 85, thai: 90 },
-      { id: 3, name: "วิทยา ฉลาดหลักแหลม", math: 92, science: 95, english: 94, social: 90, thai: 93 },
+    const lstMockData: IStudent[] = [
+      { nId: 1, sName: "สมชาย ใจดี", nMath: 85, nScience: 90, nEnglish: 88, nSocial: 92, nThai: 87 },
+      { nId: 2, sName: "สมหญิง แสนสวย", nMath: 78, nScience: 82, nEnglish: 80, nSocial: 85, nThai: 90 },
+      { nId: 3, sName: "วิทยา ฉลาดหลักแหลม", nMath: 92, nScience: 95, nEnglish: 94, nSocial: 90, nThai: 93 },
     ];
-    setStudents(mockData); //ตั้งค่าสถานะด้วยข้อมูลจำลอง
+    setLstStudents(lstMockData);
   }, []);
 
-  //จำนวนนักเรียนทั้งหมด
-  const totalStudents = students.length;
+  // --------------------------
+  // คำนวณสถิติ
+  // --------------------------
+  const nTotalStudents = lstStudents.length;
 
-  //คำนวณคะแนนรวมเฉลี่ย
-  const totalScores = students.map(s => s.math + s.science + s.english + s.social + s.thai);
-  const avgScore = totalScores.length > 0 ?
-    (totalScores.reduce((sum, val) => sum + val, 0) / totalScores.length).toFixed(2) : 0;
+  const lstTotalScores = lstStudents.map(
+    (s) => s.nMath + s.nScience + s.nEnglish + s.nSocial + s.nThai
+  );
 
-  //คะแนนรวมมากที่สุด
-  const maxScore = totalScores.length > 0 ? Math.max(...totalScores) : 0;
+  const nAvgScore =
+    lstTotalScores.length > 0
+      ? (lstTotalScores.reduce((sum, val) => sum + val, 0) / lstTotalScores.length).toFixed(2)
+      : "0";
 
-  //คะแนนรวมน้อยที่สุด
-  const minScore = totalScores.length > 0 ? Math.min(...totalScores) : 0;
+  const nMaxScore = lstTotalScores.length > 0 ? Math.max(...lstTotalScores) : 0;
+  const nMinScore = lstTotalScores.length > 0 ? Math.min(...lstTotalScores) : 0;
 
   return (
     <div className={styles.container}>
       <div className={styles.cardsContainer}>
         <div className={styles.card}>
           <h3>จำนวนนักเรียนทั้งหมด</h3>
-          <p>{totalStudents} คน </p>
+          <p>{nTotalStudents} คน</p>
         </div>
         <div className={styles.card}>
           <h3>คะแนนรวมเฉลี่ย</h3>
-          <p>{avgScore} คะแนน</p>
+          <p>{nAvgScore} คะแนน</p>
         </div>
         <div className={styles.card}>
           <h3>คะแนนรวมมากที่สุด</h3>
-          <p>{maxScore} คะแนน</p>
+          <p>{nMaxScore} คะแนน</p>
         </div>
         <div className={styles.card}>
           <h3>คะแนนรวมน้อยที่สุด</h3>
-          <p>{minScore} คะแนน</p>
+          <p>{nMinScore} คะแนน</p>
         </div>
       </div>
+
       <section>
         <h2>ตารางคะแนนนักเรียน</h2>
         <table className={styles.table}>
@@ -82,25 +91,30 @@ export default function Home() {
             </tr>
           </thead>
           <tbody>
-            {students.map((s) => (
-              //แสดงข้อมูลนักเรียนแต่ละคนในแถวของตาราง
-              <tr key={s.id}>
-                <td>{s.id}</td>
-                <td>{s.name}</td>
-                <td>{s.math}</td>
-                <td>{s.science}</td>
-                <td>{s.english}</td>
-                <td>{s.social}</td>
-                <td>{s.thai}</td>
-                <td>{s.math + s.science + s.english + s.social + s.thai}</td>
-                <td><Link href={`/edit/${s.id}`} className={styles.editButton}>
-                    แก้ไข
-                  </Link></td>
-              </tr>
-            ))}
+            {lstStudents.map((s) => {
+              const nTotal = s.nMath + s.nScience + s.nEnglish + s.nSocial + s.nThai;
+              return (
+                <tr key={s.nId}>
+                  <td>{s.nId}</td>
+                  <td>{s.sName}</td>
+                  <td>{s.nMath}</td>
+                  <td>{s.nScience}</td>
+                  <td>{s.nEnglish}</td>
+                  <td>{s.nSocial}</td>
+                  <td>{s.nThai}</td>
+                  <td>{nTotal}</td>
+                  <td>
+                    <Link href={`/edit/${s.nId}`} className={styles.editButton}>
+                      <MdEdit size={20} /> {/* ขนาด 20px */}
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </section>
+
       <Link href="/add" className={styles.addButton}>
         เพิ่มข้อมูลนักเรียน
       </Link>

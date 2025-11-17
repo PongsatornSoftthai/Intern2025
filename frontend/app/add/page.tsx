@@ -1,143 +1,154 @@
 "use client";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./AddPage.module.css";
+import styles from "./AddPage.module.css"; // ใช้ CSS Module เดิม
 
-interface FormData {
-  name: string;
-  math: string;
-  science: string;
-  english: string;
-  social: string;
-  thai: string;
+// --------------------------
+// Interface ตามกฎ
+// --------------------------
+interface IFormData {
+  sName: string;
+  nMath: number;
+  nScience: number;
+  nEnglish: number;
+  nSocial: number;
+  nThai: number;
 }
 
-interface EditPageProps {
+interface IEditPageProps {
   params: {
-    id: string;
+    sId: string; // จาก URL
   };
 }
 
-export default function EditStudent({ params }: EditPageProps) {
+// --------------------------
+// Array ของ field คะแนน
+// --------------------------
+const lstScoreSubjects: (keyof IFormData)[] = [
+  "nMath",
+  "nScience",
+  "nEnglish",
+  "nSocial",
+  "nThai",
+];
+
+export default function EditStudent({ params }: IEditPageProps) {
   const router = useRouter();
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    math: "",
-    science: "",
-    english: "",
-    social: "",
-    thai: "",
+
+  // --------------------------
+  // useState ตามค่าที่เก็บ
+  // --------------------------
+  const [formData, setFormData] = useState<IFormData>({
+    sName: "",
+    nMath: 0,
+    nScience: 0,
+    nEnglish: 0,
+    nSocial: 0,
+    nThai: 0,
   });
 
+  // --------------------------
   // ดึงข้อมูลนักเรียนเก่าตาม id
+  // --------------------------
   useEffect(() => {
     async function fetchStudent() {
       try {
-        const res = await fetch(`/api/students/${params.id}`);
-        if (!res.ok) throw new Error("Failed to fetch student");
-        const data = await res.json();
-        setFormData({
-          name: data.name || "",
-          math: data.math?.toString() || "",
-          science: data.science?.toString() || "",
-          english: data.english?.toString() || "",
-          social: data.social?.toString() || "",
-          thai: data.thai?.toString() || "",
-        });
+        const nId = Number(params.sId); // แปลง string → number
+        const res = await fetch(`/api/students/${nId}`);
+        if (!res.ok) throw new Error("ไม่สามารถโหลดข้อมูลนักเรียนได้");
+
+        const objData = await res.json();
+
+        const objInitialData: IFormData = {
+          sName: objData.sName || "",
+          nMath: Number(objData.nMath || 0),
+          nScience: Number(objData.nScience || 0),
+          nEnglish: Number(objData.nEnglish || 0),
+          nSocial: Number(objData.nSocial || 0),
+          nThai: Number(objData.nThai || 0),
+        };
+
+        setFormData(objInitialData);
       } catch (error) {
         console.error(error);
+        alert("เกิดข้อผิดพลาดในการโหลดข้อมูล");
       }
     }
     fetchStudent();
-  }, [params.id]);
+  }, [params.sId]);
 
+  // --------------------------
+  // handleChange ปลอดภัยสำหรับ TypeScript
+  // --------------------------
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    const sFieldName = e.target.name as keyof IFormData;
+    const nValue = lstScoreSubjects.includes(sFieldName)
+      ? Number(e.target.value)
+      : e.target.value;
+
+    setFormData((prev) => ({
+      ...prev,
+      [sFieldName]: nValue,
+    }));
   };
 
+  // --------------------------
+  // handleSubmit
+  // --------------------------
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const total =
-      Number(formData.math) +
-      Number(formData.science) +
-      Number(formData.english) +
-      Number(formData.social) +
-      Number(formData.thai);
+    const nTotal = lstScoreSubjects.reduce(
+      (sum, subj) => sum + Number(formData[subj]),
+      0
+    );
 
     try {
-      // ส่งข้อมูลแก้ไขไป API
-      await fetch(`/api/students/${params.id}`, {
+      const nId = Number(params.sId);
+      await fetch(`/api/students/${nId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      alert(`แก้ไขข้อมูลสำเร็จ! รวมคะแนนทั้งหมด: ${total}`);
+
+      alert(`แก้ไขข้อมูลสำเร็จ! รวมคะแนนทั้งหมด: ${nTotal}`);
       router.push("/");
     } catch (error) {
       console.error(error);
+      alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
     }
   };
 
+  // --------------------------
+  // JSX
+  // --------------------------
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>แก้ไขข้อมูลนักเรียน</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type="text"
-          name="name"
+          name="sName"
           placeholder="ชื่อ-นามสกุล"
-          value={formData.name}
+          value={formData.sName}
           onChange={handleChange}
           className={styles.input}
           required
         />
-        <input
-          type="number"
-          name="math"
-          placeholder="คณิตศาสตร์"
-          value={formData.math}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-        <input
-          type="number"
-          name="science"
-          placeholder="วิทยาศาสตร์"
-          value={formData.science}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-        <input
-          type="number"
-          name="english"
-          placeholder="ภาษาอังกฤษ"
-          value={formData.english}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-        <input
-          type="number"
-          name="social"
-          placeholder="สังคมศึกษา"
-          value={formData.social}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
-        <input
-          type="number"
-          name="thai"
-          placeholder="ภาษาไทย"
-          value={formData.thai}
-          onChange={handleChange}
-          className={styles.input}
-          required
-        />
+
+        {lstScoreSubjects.map((subj) => (
+          <input
+            key={subj}
+            type="number"
+            name={subj}
+            placeholder={subj.replace(/^n/, "")}
+            value={formData[subj]}
+            onChange={handleChange}
+            className={styles.input}
+            required
+          />
+        ))}
+
         <button type="submit" className={styles.button}>
           บันทึกการแก้ไข
         </button>
