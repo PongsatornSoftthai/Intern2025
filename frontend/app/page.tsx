@@ -1,65 +1,109 @@
+"use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
+import styles from "./HomePage.module.css";
+import Link from "next/link";
+
+//กำหนดรูปแบบหรือโครงสร้างของข้อมูลนักเรียน
+interface Student {
+  id: number;
+  name: string;
+  math: number;
+  science: number;
+  english: number;
+  social: number;
+  thai: number;
+}
 
 export default function Home() {
+
+  const [students, setStudents] = useState<Student[]>([]); //สถานะเก็บข้อมูลนักเรียน
+
+  //ใช้ useEffect เพื่อโหลดข้อมูลนักเรียนเมื่อ component ถูกสร้างขึ้น
+  useEffect(() => {
+
+    //จำลองข้อมูล (ภายหลังจะ fetch จาก API หรือฐานข้อมูล)
+    const mockData: Student[] = [
+      { id: 1, name: "สมชาย ใจดี", math: 85, science: 90, english: 88, social: 92, thai: 87 },
+      { id: 2, name: "สมหญิง แสนสวย", math: 78, science: 82, english: 80, social: 85, thai: 90 },
+      { id: 3, name: "วิทยา ฉลาดหลักแหลม", math: 92, science: 95, english: 94, social: 90, thai: 93 },
+    ];
+    setStudents(mockData); //ตั้งค่าสถานะด้วยข้อมูลจำลอง
+  }, []);
+
+  //จำนวนนักเรียนทั้งหมด
+  const totalStudents = students.length;
+
+  //คำนวณคะแนนรวมเฉลี่ย
+  const totalScores = students.map(s => s.math + s.science + s.english + s.social + s.thai);
+  const avgScore = totalScores.length > 0 ?
+    (totalScores.reduce((sum, val) => sum + val, 0) / totalScores.length).toFixed(2) : 0;
+
+  //คะแนนรวมมากที่สุด
+  const maxScore = totalScores.length > 0 ? Math.max(...totalScores) : 0;
+
+  //คะแนนรวมน้อยที่สุด
+  const minScore = totalScores.length > 0 ? Math.min(...totalScores) : 0;
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <div className={styles.container}>
+      <div className={styles.cardsContainer}>
+        <div className={styles.card}>
+          <h3>จำนวนนักเรียนทั้งหมด</h3>
+          <p>{totalStudents} คน </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className={styles.card}>
+          <h3>คะแนนรวมเฉลี่ย</h3>
+          <p>{avgScore} คะแนน</p>
         </div>
-      </main>
+        <div className={styles.card}>
+          <h3>คะแนนรวมมากที่สุด</h3>
+          <p>{maxScore} คะแนน</p>
+        </div>
+        <div className={styles.card}>
+          <h3>คะแนนรวมน้อยที่สุด</h3>
+          <p>{minScore} คะแนน</p>
+        </div>
+      </div>
+      <section>
+        <h2>ตารางคะแนนนักเรียน</h2>
+        <table className={styles.table}>
+          <thead>
+            <tr>
+              <th>ลำดับ</th>
+              <th>ชื่อ-นามสกุล</th>
+              <th>คณิตศาสตร์</th>
+              <th>วิทยาศาสตร์</th>
+              <th>ภาษาอังกฤษ</th>
+              <th>สังคมศึกษา</th>
+              <th>ภาษาไทย</th>
+              <th>รวม</th>
+              <th>จัดการ</th>
+            </tr>
+          </thead>
+          <tbody>
+            {students.map((s) => (
+              //แสดงข้อมูลนักเรียนแต่ละคนในแถวของตาราง
+              <tr key={s.id}>
+                <td>{s.id}</td>
+                <td>{s.name}</td>
+                <td>{s.math}</td>
+                <td>{s.science}</td>
+                <td>{s.english}</td>
+                <td>{s.social}</td>
+                <td>{s.thai}</td>
+                <td>{s.math + s.science + s.english + s.social + s.thai}</td>
+                <td><Link href={`/edit/${s.id}`} className={styles.editButton}>
+                    แก้ไข
+                  </Link></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </section>
+      <Link href="/add" className={styles.addButton}>
+        เพิ่มข้อมูลนักเรียน
+      </Link>
     </div>
   );
 }
