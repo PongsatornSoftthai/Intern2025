@@ -7,9 +7,6 @@ export default function HomePage() {
     <div>
       <div className="header-title">
         <h2>หน้าหลัก</h2>
-        <Link href="/add" className="btn btn-add">
-          เพิ่มหนังสือ
-        </Link>
       </div>
     </div>
   );

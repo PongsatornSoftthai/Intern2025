@@ -1,7 +1,7 @@
 /* form.css */
 
 /* พื้นที่ฟอร์มโดยรวม */
-.form-container {
+.formContainer {
   max-width: 480px;
   margin: 40px auto;
   background-color: #ffffff;
@@ -12,7 +12,7 @@
 }
 
 /* หัวข้อฟอร์ม */
-.form-title {
+.formTitle {
   font-size: 1.5rem;
   font-weight: bold;
   color: #1f2937;
@@ -21,21 +21,21 @@
 }
 
 /* กล่องของแต่ละ input */
-.form-group {
+.formGroup {
   display: flex;
   flex-direction: column;
   margin-bottom: 1rem;
 }
 
 /* ป้ายชื่อ */
-.form-group label {
+.formGroup label {
   font-weight: 600;
   color: #374151;
   margin-bottom: 0.5rem;
 }
 
 /* ช่องกรอกข้อมูล */
-.form-group input {
+.formGroup input {
   padding: 10px 12px;
   border: 1px solid #d1d5db;
   border-radius: 8px;
@@ -43,13 +43,13 @@
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.form-group input:focus {
+.formGroup input:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
 /* ปุ่ม */
-.form-button {
+.formButton {
   width: 100%;
   background-color: #16a34a;
   color: white;
@@ -61,7 +61,7 @@
   transition: background-color 0.2s;
 }
 
-.form-button:hover {
+.formButton:hover {
   background-color: #15803d;
 }
 

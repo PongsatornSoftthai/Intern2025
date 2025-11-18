@@ -1,4 +1,4 @@
-import "./layout.css";
+import styles from "./layout.module.css"; 
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -11,25 +11,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="th">
       <body>
-        <header className="header">คลังหนังสือ📚</header>
+        {/* Header */}
+        <header className={styles.header}>คลังหนังสือ📚</header>
 
-        <nav className="navbar">
-          <span className="label">ค้นหาหนังสือ🔍</span>
+        {/* Navbar / Search */}
+        <nav className={styles.navbar}>
+          <span className={styles.label}>ค้นหาหนังสือ🔍</span>
           <input type="text" placeholder="พิมพ์ชื่อหนังสือ..." />
         </nav>
 
-        <div className="content">
-          <aside className="sidebar">
+        {/* Content */}
+        <div className={styles.content}>
+          {/* Sidebar */}
+          <aside className={styles.sidebar}>
             <ul>
-              <li><Link href="/">หน้าหลัก</Link></li>
-              <li><Link href="/book">หนังสือ</Link></li>
+              <li>
+                <Link href="/">หน้าหลัก</Link>
+              </li>
+              <li>
+                <Link href="/book">หนังสือ</Link>
+              </li>
             </ul>
           </aside>
 
-          <main className="main">{children}</main>
+          {/* Main Content */}
+          <main className={styles.main}>{children}</main>
         </div>
 
-        <footer className="footer">© ณ หอสมุดแห่งหนึ่ง</footer>
+        {/* Footer */}
+        <footer className={styles.footer}>© ณ หอสมุดแห่งหนึ่ง</footer>
       </body>
     </html>
   );
