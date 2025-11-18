@@ -99,11 +99,13 @@
     color: rgb(44, 109, 96);
 }
 
+.editButton{
+    color: #d125ac;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.editIcon{
-  font-variation-settings:
-  'FILL' 0,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 24
+.editButton:hover{
+    color: #e8a1d9;
 }

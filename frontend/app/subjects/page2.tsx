@@ -1,61 +1,38 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "./HomePage.module.css";
+import styles from "./subjects.module.css";
 import { MdEdit } from "react-icons/md";
 
 
 // --------------------------
 // Interface ตั้งชื่อตามกฎ
 // --------------------------
-interface IStudent {
-  nId: number;
-  sName: string;
-  nMath: number;
-  nScience: number;
-  nEnglish: number;
-  nSocial: number;
-  nThai: number;
+interface ISubject {
+  sSubId: string;
+  sSubName: string;
+  nSubCredit: number;
+  isDeleted: boolean;
+
 }
 
-export default function Home() {
-  // --------------------------
-  // useState ตั้งชื่อตามค่าที่เก็บ
-  // --------------------------
-  const [lstStudents, setLstStudents] = useState<IStudent[]>([]);
+export default function GetSubjects() {
 
-  // --------------------------
-  // useEffect โหลดข้อมูล
-  // --------------------------
+  const [lstsubjects, setLstSubjects] = useState<ISubject[]>([]);
+
   useEffect(() => {
-    const lstMockData: IStudent[] = [
-      { nId: 1, sName: "สมชาย ใจดี", nMath: 85, nScience: 90, nEnglish: 88, nSocial: 92, nThai: 87 },
-      { nId: 2, sName: "สมหญิง แสนสวย", nMath: 78, nScience: 82, nEnglish: 80, nSocial: 85, nThai: 90 },
-      { nId: 3, sName: "วิทยา ฉลาดหลักแหลม", nMath: 92, nScience: 95, nEnglish: 94, nSocial: 90, nThai: 93 },
+    const lstMockData: ISubject[] = [
+      { sSubId:"001-196",sSubName:"หน้าที่พลเมือง",nSubCredit:1 ,isDeleted:false},
+      { sSubId:"001-456",sSubName:"ภาษาไทย ภาษาเธอ",nSubCredit:1 ,isDeleted:false},
+      { sSubId:"001-896",sSubName:"อังกฤษ",nSubCredit:1 ,isDeleted:false},
     ];
-    setLstStudents(lstMockData);
+    setLstSubjects(lstMockData);
   }, []);
 
-  // --------------------------
-  // คำนวณสถิติ
-  // --------------------------
-  const nTotalStudents = lstStudents.length;
-
-  const lstTotalScores = lstStudents.map(
-    (s) => s.nMath + s.nScience + s.nEnglish + s.nSocial + s.nThai
-  );
-
-  const nAvgScore =
-    lstTotalScores.length > 0
-      ? (lstTotalScores.reduce((sum, val) => sum + val, 0) / lstTotalScores.length).toFixed(2)
-      : "0";
-
-  const nMaxScore = lstTotalScores.length > 0 ? Math.max(...lstTotalScores) : 0;
-  const nMinScore = lstTotalScores.length > 0 ? Math.min(...lstTotalScores) : 0;
 
   return (
     <div className={styles.container}>
-      <div className={styles.cardsContainer}>
+      {/* <div className={styles.cardsContainer}>
         <div className={styles.card}>
           <h3>จำนวนนักเรียนทั้งหมด</h3>
           <p>{nTotalStudents} คน</p>
@@ -72,10 +49,11 @@ export default function Home() {
           <h3>คะแนนรวมน้อยที่สุด</h3>
           <p>{nMinScore} คะแนน</p>
         </div>
-      </div>
+      </div> */}
 
+        {/* สิ้นสุดตรงนี้ 18/11/68 */}
       <section>
-        <h2>ตารางคะแนนนักเรียน</h2>
+        <h2>รายวิชาทั้งหมด</h2>
         <table className={styles.table}>
           <thead>
             <tr>

@@ -54,70 +54,7 @@ export default function Home() {
   const nMinScore = lstTotalScores.length > 0 ? Math.min(...lstTotalScores) : 0;
 
   return (
-    <div className={styles.container}>
-      <div className={styles.cardsContainer}>
-        <div className={styles.card}>
-          <h3>จำนวนนักเรียนทั้งหมด</h3>
-          <p>{nTotalStudents} คน</p>
-        </div>
-        <div className={styles.card}>
-          <h3>คะแนนรวมเฉลี่ย</h3>
-          <p>{nAvgScore} คะแนน</p>
-        </div>
-        <div className={styles.card}>
-          <h3>คะแนนรวมมากที่สุด</h3>
-          <p>{nMaxScore} คะแนน</p>
-        </div>
-        <div className={styles.card}>
-          <h3>คะแนนรวมน้อยที่สุด</h3>
-          <p>{nMinScore} คะแนน</p>
-        </div>
-      </div>
-
-      <section>
-        <h2>ตารางคะแนนนักเรียน</h2>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>ลำดับ</th>
-              <th>ชื่อ-นามสกุล</th>
-              <th>คณิตศาสตร์</th>
-              <th>วิทยาศาสตร์</th>
-              <th>ภาษาอังกฤษ</th>
-              <th>สังคมศึกษา</th>
-              <th>ภาษาไทย</th>
-              <th>รวม</th>
-              <th>จัดการ</th>
-            </tr>
-          </thead>
-          <tbody>
-            {lstStudents.map((s) => {
-              const nTotal = s.nMath + s.nScience + s.nEnglish + s.nSocial + s.nThai;
-              return (
-                <tr key={s.nId}>
-                  <td>{s.nId}</td>
-                  <td>{s.sName}</td>
-                  <td>{s.nMath}</td>
-                  <td>{s.nScience}</td>
-                  <td>{s.nEnglish}</td>
-                  <td>{s.nSocial}</td>
-                  <td>{s.nThai}</td>
-                  <td>{nTotal}</td>
-                  <td>
-                    <Link href={`/edit/${s.nId}`} className={styles.editButton}>
-                      <MdEdit size={20} /> {/* ขนาด 20px */}
-                    </Link>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </section>
-
-      <Link href="/add" className={styles.addButton}>
-        เพิ่มข้อมูลนักเรียน
-      </Link>
+    <div>
     </div>
   );
 }

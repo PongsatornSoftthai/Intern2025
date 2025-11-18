@@ -29,7 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <header className="header">
-          <h1 className="title">ระบบบันทึกคะแนนนักเรียน</h1>
+          <h1 className="title">ระบบจัดการการสอน</h1>
         </header>
 
         <div className="container">
@@ -37,13 +37,19 @@ export default function RootLayout({
             <nav className="nav">
               <ul>
                 <li>
-                  <a href="/">Home</a>
+                  <a href="/">หน้าแรก</a>
                 </li>
                 <li>
-                  <a href="/add">Add Data</a>
+                  <a href="/subjects">รายวิชาทั้งหมด</a>
                 </li>
                 <li>
-                  <a href="/about">About</a>
+                  <a href="/#">รายชื่ออาจารย์ทั้งหมด</a>
+                </li>
+                <li>
+                  <a href="/#">เพิ่มรายวิชา</a>
+                </li>
+                <li>
+                  <a href="/#">เพิ่มอาจารย์</a>
                 </li>
               </ul>
             </nav>
