@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Sidebar from "@/components/Sidebar/sidebar";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Header from "@/components/Header/header";
 import Link from "next/link";
 
 const geistSans = Geist({
@@ -25,36 +27,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai+Looped:wght@100..900&display=swap" rel="stylesheet"></link>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <header className="header">
-          <h1 className="title">ระบบจัดการการสอน</h1>
-        </header>
-
-        <div className="container">
-          <aside className="sidebar">
-            <nav className="nav">
-              <ul>
-                <li>
-                  <a href="/">หน้าแรก</a>
-                </li>
-                <li>
-                  <a href="/subjects">รายวิชาทั้งหมด</a>
-                </li>
-                <li>
-                  <a href="/#">รายชื่ออาจารย์ทั้งหมด</a>
-                </li>
-                <li>
-                  <a href="/#">เพิ่มรายวิชา</a>
-                </li>
-                <li>
-                  <a href="/#">เพิ่มอาจารย์</a>
-                </li>
-              </ul>
-            </nav>
-          </aside>
-        </div>
+        <Header />
+        <Sidebar />
         <main className="mainContent">
           {children}
         </main>

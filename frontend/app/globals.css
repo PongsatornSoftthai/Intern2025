@@ -22,68 +22,13 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-header {
-  color: white;
-  background-color: rgb(44, 109, 96);
-  padding: 20px;
-  text-align: center;
-  font-size: 3rem;
-  border-radius: 12px;
-  margin: 20px;
-  position: fixed;
-  right: 0;
-  left: 0;
-}
-
-.container {
-  display: flex;
-}
-
-.sidebar {
-  width: 250px;
-  background-color: rgb(44, 109, 96);
-  padding: 20px;
-  border-radius: 12px;
-  margin: 20px;
-  margin-top: 5px;
-  position:fixed;
-  z-index: 1; /* Stay on top */
-  top: 150px;   /* ระยะจากขอบบน */
-  bottom: 0;
-}
-
-.nav ul {
-  list-style-type: none;
-  padding: 0;
-  margin: 20px 0;
-  display: flex;
-  flex-direction: column; /* จัดเรียงรายการในแนวตั้ง */
-  gap: 10px; /* ระยะห่างระหว่างรายการ */
-}
-
-.nav a{
-  color: white;
-  text-decoration: none;
-  font-size: 1.2rem;
-  padding: 10px 15px;
-  display: block;
-  border-radius: 8px;
-  transition: background-color 0.3s;
-  border: solid 2px rgb(39, 74, 68);
-}
-
-.nav a:hover {
-  background-color: rgb(255, 255, 255);
-  color: rgb(44, 109, 96);
+  font-family: "Noto Sans Thai Looped", sans-serif;
 }
 
 .mainContent {
   margin-left: 290px; /* เว้นให้ sidebar */
   padding: 20px;
-  margin-top: 150px;
+  margin-top: 80px;
   min-height: calc(100vh - 150px);
   flex: 1;
 }

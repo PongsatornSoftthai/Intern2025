@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "./HomePage.module.css";
+import styles from "./EditPage.module.css";
 import { MdEdit } from "react-icons/md";
 
 

@@ -1,0 +1,56 @@
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 10px;
+}
+.title{
+    font-size: 30px;
+    color: #e57c2f ;
+    font-weight: bold;
+    background-color: #ffffff;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+.cardsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    /* ขึ้นบรรทัดใหม่อัตโนมัติ */
+    gap: 40px;
+    padding: 20px;
+    justify-content: center;
+    /* จัดกึ่งกลางแนวนอน */
+    margin: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    /* ไอคอนอยู่บน, ข้อความอยู่ล่าง */
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 150px;
+    background-color: #e57c2f;
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, background-color 0.3s;
+    font-size: 1rem;
+    padding: 15px;
+}
+
+.card svg {
+    font-size: 2rem;
+    /* ขนาดไอคอนใหญ่ขึ้น */
+    margin-bottom: 10px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    background-color: #ffffff;
+    color: #e57c2f;
+}

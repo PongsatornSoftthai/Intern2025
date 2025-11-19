@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    width: 220px;
+    background-color: rgb(44, 109, 96);
+    padding: 20px;
+    border-radius: 5px;
+    margin: 10px;
+    margin-top: 2px;
+    position: fixed;
+    z-index: 1;
+    /* Stay on top */
+    top: 90px;
+    /* ระยะจากขอบบน */
+    bottom: 0;
+}
+
+.nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    /* จัดเรียงรายการในแนวตั้ง */
+    gap: 10px;
+    /* ระยะห่างระหว่างรายการ */
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    padding: 10px 15px;
+    display: flex;
+    /* เปลี่ยนจาก block → flex */
+    align-items: center;
+    /* จัดให้อยู่กลางแนว Y */
+    gap: 10px;
+    /* ระยะห่างระหว่างไอคอนกับข้อความ */
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+    border: solid 2px rgb(39, 74, 68);
+}
+
+
+.nav a:hover {
+    background-color: rgb(255, 255, 255);
+    color: rgb(44, 109, 96);
+}
