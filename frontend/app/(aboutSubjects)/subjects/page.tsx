@@ -12,6 +12,7 @@ interface ISubject {
   sSubId: string;
   sSubName: string;
   nSubCredit: number;
+  sFacName: string;
   isDeleted: boolean;
 }
 
@@ -21,9 +22,9 @@ export default function GetSubjects() {
 
   useEffect(() => {
     const lstMockData: ISubject[] = [
-      { sSubId: "001-196", sSubName: "หน้าที่พลเมือง", nSubCredit: 1, isDeleted: false },
-      { sSubId: "001-456", sSubName: "ภาษาไทย ภาษาเธอ", nSubCredit: 1, isDeleted: false },
-      { sSubId: "001-896", sSubName: "อังกฤษ", nSubCredit: 1, isDeleted: false },
+      { sSubId: "001-196", sSubName: "หน้าที่พลเมือง", nSubCredit: 1,sFacName:"วิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
+      { sSubId: "001-456", sSubName: "ภาษาไทย ภาษาเธอ", nSubCredit: 1,sFacName:"วิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
+      { sSubId: "001-896", sSubName: "อังกฤษ", nSubCredit: 1,sFacName:"วิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
     ];
     setLstSubjects(lstMockData);
   }, []);
@@ -40,6 +41,7 @@ export default function GetSubjects() {
               <th>รหัสวิชา</th>
               <th>ชื่อวิชา</th>
               <th>หน่วยกิต</th>
+              <th>สังกัดคณะ</th>
               <th>จัดการ</th>
             </tr>
           </thead>
@@ -54,12 +56,13 @@ export default function GetSubjects() {
                     <td>{sub.sSubId}</td>
                     <td>{sub.sSubName}</td>
                     <td>{sub.nSubCredit}</td>
+                    <td>{sub.sFacName}</td>
                     <td>
                       <div className={styles.manageButton}>
                         <Link href={`/editSubject/${sub.sSubId}`} >
                           <MdEdit size={20} /> {/* ขนาด 20px */}
                         </Link>
-                        <Link href={`/editSubject/${sub.sSubId}`} >
+                        <Link href={`/deleteSubject/${sub.sSubId}`} >
                           <MdDelete size={20} /> {/* ขนาด 20px */}
                         </Link>
                       </div>

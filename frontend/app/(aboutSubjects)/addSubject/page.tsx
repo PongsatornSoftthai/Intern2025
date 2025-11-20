@@ -1,11 +1,12 @@
 'use client'
 import React, { useState } from "react";
-import styles from "./addSubjects.module.css";
+import styles from "../../css/addForm.module.css";
 
 interface IFormData {
     sSubId: string;
     sSubName: string;
     nSubCredit: number;
+    sFacName: string;
 }
 
 export default function AddSubject() {
@@ -14,11 +15,12 @@ export default function AddSubject() {
         sSubId: "",
         sSubName: "",
         nSubCredit: 0,
+        sFacName: "",
     });
 
     const [subjects, setSubjects] = useState<IFormData[]>([]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
@@ -31,7 +33,7 @@ export default function AddSubject() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.sSubId || !formData.sSubName || !formData.nSubCredit) {
+        if (!formData.sSubId || !formData.sSubName || !formData.nSubCredit||!formData.sFacName) {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน")
             return;
         }
@@ -40,7 +42,7 @@ export default function AddSubject() {
             [...prev, formData].sort((a, b) => a.sSubId.localeCompare(b.sSubId))
         );
 
-        setFormData({ sSubId: "", sSubName: "", nSubCredit: 0 });
+        setFormData({ sSubId: "", sSubName: "", nSubCredit: 0,sFacName:"" });
     };
 
     return (
@@ -80,6 +82,20 @@ export default function AddSubject() {
                             className={styles.input}
                         />
                     </div>
+                    <div>
+                        <label >สังกัดคณะ: </label>
+                        <select
+                            name="sFacName"
+                            value={formData.sFacName}
+                            onChange={handleChange}
+                            className={styles.input}
+                            
+                        >
+                            <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
+                            <option value="ศึกษาศาสตร์">ศึกษาศาสตร์</option>
+                            <option value="รัฐศาสตร์">รัฐศาสตร์</option>
+                        </select>
+                    </div>
                     <button type="submit" className={styles.button}>เพิ่มรายวิชา</button>
                 </form>
             </div>
@@ -93,6 +109,7 @@ export default function AddSubject() {
                             <th>รหัสวิชา</th>
                             <th>ชื่อวิชา</th>
                             <th>หน่วยกิต</th>
+                            <th>สังกัดคณะ</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -102,6 +119,7 @@ export default function AddSubject() {
                                 <td>{sub.sSubId}</td>
                                 <td>{sub.sSubName}</td>
                                 <td>{sub.nSubCredit}</td>
+                                <td>{sub.sFacName}</td>
                             </tr>
                         ))}
                     </tbody>

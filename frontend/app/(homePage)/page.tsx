@@ -1,5 +1,6 @@
 import { FaHome, FaBook, FaUser, FaPlus } from "react-icons/fa";
 import styles from "./homepage.module.css";
+import SubjectsByFacultyChart from "./SubjectsByFacultyChart/subjectByFacultyChart";
 
 const menuItems = [
   { label: "รายวิชาทั้งหมด", icon: <FaBook />, href: "/subjects" },
@@ -20,6 +21,7 @@ export default function MenuCards() {
           </a>
         ))}
       </div>
+      <SubjectsByFacultyChart />
     </div>
   );
 }

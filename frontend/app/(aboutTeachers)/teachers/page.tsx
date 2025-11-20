@@ -14,6 +14,7 @@ interface ITeacher {
     dTeaBdate: Date;
     sTeaAdd: string;
     sTeaTel: string;
+    sFacName: string;
     isDeleted: boolean;
 }
 
@@ -22,7 +23,7 @@ export default function GetTeachers() {
 
     useEffect(() => {
         const lstMockData: ITeacher[] = [
-            { sTeaId: "001", sTeaFname: "สมชาย", sTeaLname: "สุขใจ", sTeaSex: "ชาย", dTeaBdate: new Date("2000-05-10"), sTeaAdd: "123/45 หมู่ 3 ต.บ้านใหม่ อ.เมือง จ.นนทบุรี 11000", sTeaTel: "0812345678", isDeleted: false },
+            { sTeaId: "001", sTeaFname: "สมชาย", sTeaLname: "สุขใจ", sTeaSex: "ชาย", dTeaBdate: new Date("2000-05-10"), sTeaAdd: "123/45 หมู่ 3 ต.บ้านใหม่ อ.เมือง จ.นนทบุรี 11000", sTeaTel: "0812345678", sFacName: "คณะวิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
         ];
         setLstTeachers(lstMockData);
     }, []);
@@ -42,6 +43,7 @@ export default function GetTeachers() {
                             <th>วัน/เดือน/ปีเกิด</th>
                             <th>ที่อยู่</th>
                             <th>เบอร์โทร</th>
+                            <th>สังกัดคณะ</th>
                             <th>จัดการ</th>
                         </tr>
                     </thead>
@@ -60,12 +62,13 @@ export default function GetTeachers() {
                                         <td>{T.dTeaBdate.toLocaleDateString("th-TH")}</td>
                                         <td>{T.sTeaAdd}</td>
                                         <td>{T.sTeaTel}</td>
+                                        <td>{T.sFacName}</td>
                                         <td>
                                             <div className={styles.manageButton}>
                                                 <Link href={`/editTeacher/${T.sTeaId}`} >
                                                     <MdEdit size={20} /> {/* ขนาด 20px */}
                                                 </Link>
-                                                <Link href={`/editTeacher/${T.sTeaId}`} >
+                                                <Link href={`/deleteTeacher/${T.sTeaId}`} >
                                                     <MdDelete size={20} /> {/* ขนาด 20px */}
                                                 </Link>
                                             </div>
