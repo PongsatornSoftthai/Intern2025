@@ -1,0 +1,69 @@
+.homeContainer {
+  padding: 0px 10px;
+}
+
+/* Title */
+.headerTitle h2 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 28px;
+  color: #111827;
+}
+
+/* Section */
+.section {
+  margin-bottom: 36px;
+}
+
+/* Section Header */
+.sectionHeader h3 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 14px;
+}
+
+/* Book List */
+.bookList {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+}
+
+.bookList::-webkit-scrollbar {
+  height: 6px;
+}
+
+.bookList::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+.bookCard {
+  min-width: 150px;
+  padding: 16px;
+  background-color: #fff4d9; /* โทนอุ่นตัดกับพื้นหลังครีม */
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* เงาเข้มขึ้น */
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  scroll-snap-align: start;
+  border: 1px solid #f3e2c7; /* เส้นขอบโทนอุ่น */
+}
+
+.bookCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+  background-color: #ffeecf; /* hover ทำให้เด่นขึ้น */
+}
+
+.bookTitle {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1f2937; /* ตัวอักษรเข้ม อ่านง่าย */
+  margin-top: 4px;
+}
+
+

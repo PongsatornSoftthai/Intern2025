@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <nav className={styles.navbar}>
           <span className={styles.label}>ค้นหาหนังสือ🔍</span>
           <input type="text" placeholder="พิมพ์ชื่อหนังสือ..." />
-        </nav>
+        </nav> 
 
         {/* Content */}
         <div className={styles.content}>
@@ -29,7 +29,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <Link href="/">หน้าหลัก</Link>
               </li>
               <li>
-                <Link href="/book">หนังสือ</Link>
+                <Link href="/book">รายการหนังสือ</Link>
+              </li>
+              <li>
+                <Link href="/chart">ตัวอย่างกราฟ</Link>
               </li>
             </ul>
           </aside>
