@@ -3,35 +3,42 @@ import Link from "next/link";
 import { useState } from "react";
 import style from "./style.module.css"; 
 
-// ใช้ interface แทน type
 interface Item {
+  sID: string;
   nNo: number;
   sName: string;
   nPrice: number;
   nQuantity: number;
+  sAuthor: string;     
+  dReleaseDate: Date;
 }
 
 export default function ListPage() {
-  // กำหนด useState เป็น Item[]
   const [items, setItems] = useState<Item[]>([
-    { nNo: 1, sName: "เจ้าชายน้อย", nPrice: 199, nQuantity: 12 },
-    { nNo: 2, sName: "ปีศาจตัวนั้น คือฉันเอง", nPrice: 360, nQuantity: 9 },
-    { nNo: 3, sName: "ใครรู้ คนนั้นรอด", nPrice: 225, nQuantity: 99 },
-    { nNo: 4, sName: "จดหมายจากดาวแมว", nPrice: 209, nQuantity: 365 },
-    { nNo: 5, sName: "จิตวิทยาสายดาร์ก", nPrice: 250, nQuantity: 63 },
+    { sID:"1",nNo: 1, sName: "เจ้าชายน้อย", nPrice: 199, nQuantity: 12 , sAuthor: "Antoine de Saint-Exupéry", dReleaseDate: new Date("2022-02-11")},
+    { sID:"2",nNo: 2, sName: "ปีศาจตัวนั้น คือฉันเอง", nPrice: 360, nQuantity: 9, sAuthor: "MAY-I (เม-ไอ)", dReleaseDate: new Date("2025-09-25")},
+    { sID:"3",nNo: 3, sName: "ใครรู้ คนนั้นรอด", nPrice: 225, nQuantity: 99, sAuthor: "ดร.ตฤณห์ โพธิ์รักษา", dReleaseDate: new Date("2024-09-17")},
+    { sID:"4",nNo: 4, sName: "จดหมายจากดาวแมว", nPrice: 209, nQuantity: 365, sAuthor: "นทธี ศศิวิมล", dReleaseDate: new Date("2025-07-15")},
+    { sID:"5",nNo: 5, sName: "จิตวิทยาสายดาร์ก", nPrice: 250, nQuantity: 63, sAuthor: "Dr. Hiro", dReleaseDate: new Date("2024-10-25")},
   ]);
+
+  // ➤ ฟังก์ชันลบ
+  const handleDelete = (nNo: number) => {
+    const confirmDelete = window.confirm("ต้องการลบรายการนี้หรือไม่?");
+    if (!confirmDelete) return;
+
+    setItems(items.filter((item) => item.nNo !== nNo));
+  };
 
   return (
     <div>
-      {/* Header / Title + Add Button */}
-      <div className= {style.headerTitle}>
+      <div className={style.headerTitle}>
         <h2>รายการหนังสือ</h2>
         <Link href="/add" className={`${style.btn} ${style.btnAdd}`}>
           เพิ่มหนังสือ
         </Link>
       </div>
 
-      {/* Table */}
       <div className={style.tablecontainer}>
         <table className={style.table}>
           <thead>
@@ -40,7 +47,9 @@ export default function ListPage() {
               <th>ชื่อหนังสือ</th>
               <th>ราคา (บาท)</th>
               <th>จำนวน (เล่ม)</th>
-              <th>การแก้ไข</th>
+              <th>ผู้แต่ง</th>
+              <th>วันที่วางจำหน่าย</th>
+              <th>การจัดการ</th>
             </tr>
           </thead>
           <tbody>
@@ -48,12 +57,24 @@ export default function ListPage() {
               <tr key={item.nNo}>
                 <td>{item.nNo}</td>
                 <td>{item.sName}</td>
-                <td>{item.nPrice}</td>
+                <td>{item.nPrice.toFixed(2)}</td>
                 <td>{item.nQuantity}</td>
+                <td>{item.sAuthor}</td>
+                <td>{item.dReleaseDate.toLocaleDateString()}</td>
                 <td>
-                  <Link href={`/edit/${item.nNo}`} className={`${style.btn} ${style.btnEdit}`}>
-                    แก้ไข
+                  <Link
+                    href={`/edit/${item.nNo}`}
+                    className={`${style.btn} ${style.btnEdit}`}
+                  >
+                    🖊
                   </Link>
+
+                  <button
+                    onClick={() => handleDelete(item.nNo)}
+                    className={`${style.btn} ${style.btnDelete}`}
+                  >
+                    🗑️
+                  </button>
                 </td>
               </tr>
             ))}

@@ -1,4 +1,3 @@
-
 /* ตารางหลัก */
 .table {
   width: 100%;
@@ -16,7 +15,7 @@
 .table th {
   border: 1px solid black;
   padding: 8px 16px;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   background-color: #e0e7ff;
 }
@@ -25,39 +24,53 @@
 .table td {
   border: 1px solid black;
   padding: 8px 16px;
+  text-align: center;
 }
 
 .table tr:hover {
   background-color: #f9fafb; /* hover สีเทาอ่อน */
 }
 
-/* ปุ่ม */
+/* ปุ่มพื้นฐาน */
 .btn {
-  padding: 6px 12px;
+  padding: 8px 12px;
   border-radius: 6px;
   color: white;
   font-size: 14px;
   text-decoration: none;
-  border: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
+  border: 1px solid black;        /* เพิ่มขอบสีดำ */
+  
+  text-align: center;
+  display: inline-block;
 }
 
+/* ปุ่มเพิ่มหนังสือ */
 .btnAdd {
-  background-color: #22c55e; /* เขียว */
+  background-color: #22c55e;
 }
-
 .btnAdd:hover {
   background-color: #16a34a;
 }
 
+/* ปุ่มแก้ไข */
 .btnEdit {
-  background-color: #eab308; /* เหลือง */
+  background-color: #eab308;
 }
-
 .btnEdit:hover {
   background-color: #ca8a04;
 }
+
+/* ปุ่มลบ */
+.btnDelete {
+  background-color: #dc5b4d;
+  margin-left: 6px;
+}
+.btnDelete:hover {
+  background-color: #c0392b;
+}
+
 /* ส่วนหัว */
 .headerTitle {
   display: flex;
