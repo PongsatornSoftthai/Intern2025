@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #dad2d2;
-    --foreground: #7b6969;
+    --background: #ffffff;
+    --foreground: #ffffff;
   }
 }
 
@@ -23,8 +23,8 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: "Noto Sans Thai Looped", sans-serif;
+  font-size: 14px;
 }
-
 .mainContent {
   margin-left: 290px; /* เว้นให้ sidebar */
   padding: 20px;

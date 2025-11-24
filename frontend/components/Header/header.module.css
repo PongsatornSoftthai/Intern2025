@@ -4,13 +4,14 @@
     align-items: center;
     color: white;
     height: 10%;
-    background-color: rgb(44, 109, 96);
+    background-color:#27ac1f;
     padding: 10px;
     /* border-radius: 12px; */
     /* margin: 20px; */
     position: fixed;
     right: 0;
     left: 0;
+    z-index: 100;
 }
 
 .title {

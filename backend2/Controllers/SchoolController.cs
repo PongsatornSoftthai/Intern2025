@@ -1,0 +1,57 @@
+﻿//การ impoert namespace เพื่อเข้าถึง Service
+using backend2.Service;
+//สำหรับการสร้าง controller และ api 
+using Microsoft.AspNetCore.Mvc;
+
+//namespace = ตู้เก็บของ เก็บ class , interface, อื่น ๆ เรียกใช้ต้องอ้าง namespace นั้น ๆ
+//กำหนด namespace ระบุว่า controller นี้อยู่ในโฟลเดอร์ backend2.Controllers
+namespace backend2.Controllers
+{
+    //controller นี้เป็น API ไม่ใช่ MVC
+    [ApiController]
+    //กำหนด route การเข้าถึง api
+    [Route("api/[controller]/[action]")]
+
+    //สร้าง class SchoolController สืบทอดมาจาก Controller
+    public class SchoolController : Controller
+    {
+        //สร้างตัวแปรเพื่อเก็บ service
+        //private คือใช้ได้เฉพาะภายใน class นี้
+        //กำหนดตัวแปรแบบ readonly คือ กำหนดค่าได้ครั้งเดียวตอนสร้าง object
+        private readonly ISchoolService _schoolService;
+
+        //สร้าง constructor เพื่อรับ service ที่ถูก inject มา
+        public SchoolController(ISchoolService SchoolService)
+        {
+            _schoolService = SchoolService;
+        }
+
+        //api นี้ต้องเรียกใช้ด้วย post method
+        //สร้าง api Api/GetSchool
+        [HttpPost]
+        public IActionResult GetSchool(string sSchoolID) //รับค่าพารามิเตอร์ sSchoolID จาก frontend
+        {
+            //ส่ง sSchoolID ไปที่ service เพื่อดึงข้อมูล ส่งผลลัพธ์กลับมาเป็น object
+            var objBook = _schoolService.GetSchoolByID(sSchoolID);
+            //ส่งผลลัพธ์กลับไปที่ frontend ok()= HTTP status 200 พร้อมกับข้อมูล json
+            return Ok(objBook);
+        }
+
+        //ดึงข้อมูลอาจารย์ทั้งหมด
+        [HttpGet]
+        public IActionResult GetAllTeachers()
+        {
+            //เรียกใช้ service เพื่อดึงข้อมูลอาจารย์ทั้งหมด
+            var teachers = _schoolService.GetAllTeachers();
+            return Ok(teachers);
+        }
+
+        //ดึงข้อมูลรายวิชาทั้งหมด
+        [HttpGet]
+        public IActionResult GetAllSubjects()
+        {
+            var subjects = _schoolService.GetAllSubjects();
+            return Ok(subjects);
+        }
+    }
+}

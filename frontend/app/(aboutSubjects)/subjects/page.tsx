@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "./subjects.module.css";
+import styles from "../../css/displayDetails.module.css";
 import { MdEdit, MdDelete } from "react-icons/md";
 
 
@@ -9,24 +9,27 @@ import { MdEdit, MdDelete } from "react-icons/md";
 // Interface ตั้งชื่อตามกฎ
 // --------------------------
 interface ISubject {
-  sSubId: string;
-  sSubName: string;
-  nSubCredit: number;
-  sFacName: string;
+  sSubjectId: string;
+  sName: string;
+  nCredit: number;
   isDeleted: boolean;
 }
 
 export default function GetSubjects() {
 
   const [lstSubjects, setLstSubjects] = useState<ISubject[]>([]);
-
   useEffect(() => {
-    const lstMockData: ISubject[] = [
-      { sSubId: "001-196", sSubName: "หน้าที่พลเมือง", nSubCredit: 1,sFacName:"วิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
-      { sSubId: "001-456", sSubName: "ภาษาไทย ภาษาเธอ", nSubCredit: 1,sFacName:"วิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
-      { sSubId: "001-896", sSubName: "อังกฤษ", nSubCredit: 1,sFacName:"วิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
-    ];
-    setLstSubjects(lstMockData);
+    const fetchSubjects = async () => {
+      try {
+        const res = await fetch("https://localhost:7127/api/School/GetAllSubjects");
+        if (!res.ok) throw new Error("Network response was not ok");
+        const data: ISubject[] = await res.json();
+        setLstSubjects(data);
+      } catch (error) {
+        console.error("Fetch error:", error);
+      }
+    };
+    fetchSubjects();
   }, []);
 
 
@@ -41,29 +44,28 @@ export default function GetSubjects() {
               <th>รหัสวิชา</th>
               <th>ชื่อวิชา</th>
               <th>หน่วยกิต</th>
-              <th>สังกัดคณะ</th>
               <th>จัดการ</th>
             </tr>
           </thead>
           <tbody>
             {lstSubjects
-              .sort((a, b) => a.sSubId.localeCompare(b.sSubId)) //เรียงข้อมูลตามตัวอักษร
+              .filter(s => !s.isDeleted)
+              .sort((a, b) => a.sSubjectId.localeCompare(b.sSubjectId)) //เรียงข้อมูลตามตัวอักษร
               .map((sub, index) => {
                 return (
                   // คิดว่าจะทำแต่ละเซลล์เป็น link เพื่อกดไปที่ข้อมุลเพิ่มเติมของรายวิชา
-                  <tr key={sub.sSubId}>
+                  <tr key={sub.sSubjectId}>
                     <td>{index + 1}</td>
-                    <td>{sub.sSubId}</td>
-                    <td>{sub.sSubName}</td>
-                    <td>{sub.nSubCredit}</td>
-                    <td>{sub.sFacName}</td>
+                    <td>{sub.sSubjectId}</td>
+                    <td>{sub.sName}</td>
+                    <td>{sub.nCredit}</td>
                     <td>
                       <div className={styles.manageButton}>
-                        <Link href={`/editSubject/${sub.sSubId}`} >
-                          <MdEdit size={20} /> {/* ขนาด 20px */}
+                        <Link href={`/editSubject/${sub.sSubjectId}`} className={styles.editButton}>
+                          <MdEdit /> {/* ขนาด 20px */}
                         </Link>
-                        <Link href={`/deleteSubject/${sub.sSubId}`} >
-                          <MdDelete size={20} /> {/* ขนาด 20px */}
+                        <Link href={`/deleteSubject/${sub.sSubjectId}`} className={styles.deleteButton}>
+                          <MdDelete /> {/* ขนาด 20px */}
                         </Link>
                       </div>
                     </td>

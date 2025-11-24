@@ -2,30 +2,39 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import styles from "./teachers.module.css";
+import styles from "../../css/displayDetails.module.css";
 import { MdEdit, MdDelete } from "react-icons/md";
 
 
+// Interface ให้ตรงกับ JSON จริงจาก Backend
 interface ITeacher {
-    sTeaId: string;
-    sTeaFname: string;
-    sTeaLname: string;
-    sTeaSex: "ชาย" | "หญิง";
-    dTeaBdate: Date;
-    sTeaAdd: string;
-    sTeaTel: string;
-    sFacName: string;
+    sTeacherId: string;
+    sFirstName: string;
+    sLastName: string;
+    sGender: "ชาย" | "หญิง";
+    dBirthDate: string; // เก็บเป็น string จาก backend
+    sAddress: string;
+    sPhoneNumber: string;
     isDeleted: boolean;
+    sSubjectId: string;
 }
 
 export default function GetTeachers() {
     const [lstTeachers, setLstTeachers] = useState<ITeacher[]>([]);
 
     useEffect(() => {
-        const lstMockData: ITeacher[] = [
-            { sTeaId: "001", sTeaFname: "สมชาย", sTeaLname: "สุขใจ", sTeaSex: "ชาย", dTeaBdate: new Date("2000-05-10"), sTeaAdd: "123/45 หมู่ 3 ต.บ้านใหม่ อ.เมือง จ.นนทบุรี 11000", sTeaTel: "0812345678", sFacName: "คณะวิทยาศาสตร์และเทคโนโลยี", isDeleted: false },
-        ];
-        setLstTeachers(lstMockData);
+        const fetchTeachers = async () => {
+            try {
+                const res = await fetch("https://localhost:7127/api/School/GetAllTeachers");
+                if (!res.ok) throw new Error("Network response was not ok");
+                const data: ITeacher[] = await res.json();
+                setLstTeachers(data);
+            } catch (error) {
+                console.error("Fetch error:", error);
+            }
+        };
+
+        fetchTeachers();
     }, []);
 
     return (
@@ -43,33 +52,34 @@ export default function GetTeachers() {
                             <th>วัน/เดือน/ปีเกิด</th>
                             <th>ที่อยู่</th>
                             <th>เบอร์โทร</th>
-                            <th>สังกัดคณะ</th>
+                            <th>วิชาที่สอน</th>
                             <th>จัดการ</th>
                         </tr>
                     </thead>
                     <tbody>
                         {lstTeachers
-                            .sort((a, b) => a.sTeaId.localeCompare(b.sTeaId)) //เรียงข้อมูลตามตัวอักษร
+                            .filter(t => !t.isDeleted)
+                            .sort((a, b) => a.sTeacherId.localeCompare(b.sTeacherId)) //เรียงข้อมูลตามตัวอักษร
                             .map((T, index) => {
                                 return (
                                     // คิดว่าจะทำแต่ละเซลล์เป็น link เพื่อกดไปที่ข้อมุลเพิ่มเติมของรายวิชา
-                                    <tr key={T.sTeaId}>
+                                    <tr key={T.sTeacherId}>
                                         <td>{index + 1}</td>
-                                        <td>{T.sTeaId}</td>
-                                        <td>{T.sTeaFname}</td>
-                                        <td>{T.sTeaLname}</td>
-                                        <td>{T.sTeaSex}</td>
-                                        <td>{T.dTeaBdate.toLocaleDateString("th-TH")}</td>
-                                        <td>{T.sTeaAdd}</td>
-                                        <td>{T.sTeaTel}</td>
-                                        <td>{T.sFacName}</td>
+                                        <td>{T.sTeacherId}</td>
+                                        <td>{T.sFirstName}</td>
+                                        <td>{T.sLastName}</td>
+                                        <td>{T.sGender}</td>
+                                        <td>{new Date(T.dBirthDate).toLocaleDateString("th-TH")}</td>
+                                        <td>{T.sAddress}</td>
+                                        <td>{T.sPhoneNumber}</td>
+                                        <td>{T.sSubjectId}</td>
                                         <td>
                                             <div className={styles.manageButton}>
-                                                <Link href={`/editTeacher/${T.sTeaId}`} >
-                                                    <MdEdit size={20} /> {/* ขนาด 20px */}
+                                                <Link href={`/editTeacher/${T.sTeacherId}`} className={styles.editButton}>
+                                                    <MdEdit /> {/* ขนาด 20px */}
                                                 </Link>
-                                                <Link href={`/deleteTeacher/${T.sTeaId}`} >
-                                                    <MdDelete size={20} /> {/* ขนาด 20px */}
+                                                <Link href={`/deleteTeacher/${T.sTeacherId}`} className={styles.deleteButton} >
+                                                    <MdDelete /> {/* ขนาด 20px */}
                                                 </Link>
                                             </div>
                                         </td>
