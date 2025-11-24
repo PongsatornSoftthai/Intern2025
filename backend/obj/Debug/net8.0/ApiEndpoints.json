@@ -1,0 +1,28 @@
+[
+  {
+    "ContainingType": "backend2.Controllers.BookController",
+    "Method": "GetAllBooks",
+    "RelativePath": "api/Book/GetAllBooks",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.BookController",
+    "Method": "GetBook",
+    "RelativePath": "api/Book/GetBook",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "nBookID",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

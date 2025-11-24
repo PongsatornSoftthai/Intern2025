@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace backend2.Models;
+namespace backend.Models;
 
 public partial class TbBook
 {
     public int NBookId { get; set; }
 
-    public string SBookName { get; set; } = null!;
+    public string SNamebook { get; set; } = null!;
 
     public decimal NPrice { get; set; }
 
@@ -19,7 +19,7 @@ public partial class TbBook
 
     public DateTime? DUpdate { get; set; }
 
-    public bool IsDeleted { get; set; }
+    public bool IsDelete { get; set; }
 
-    public DateTime? DDeleted { get; set; }
+    public DateTime? DDelete { get; set; }
 }

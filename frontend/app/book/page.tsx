@@ -1,34 +1,51 @@
 "use client";
-import Link from "next/link";
-import { useState } from "react";
-import style from "./style.module.css"; 
 
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import style from "./style.module.css";
+
+// ➤ Interface ของข้อมูล
 interface Item {
-  sID: string;
-  nNo: number;
-  sName: string;
+  nBookID: number;
+  sNamebook: string;
   nPrice: number;
   nQuantity: number;
-  sAuthor: string;     
-  dReleaseDate: Date;
+  sAuthor: string;
+  dReleaseDate: string; // ดึงจาก API เป็น string
 }
 
 export default function ListPage() {
-  const [items, setItems] = useState<Item[]>([
-    { sID:"1",nNo: 1, sName: "เจ้าชายน้อย", nPrice: 199, nQuantity: 12 , sAuthor: "Antoine de Saint-Exupéry", dReleaseDate: new Date("2022-02-11")},
-    { sID:"2",nNo: 2, sName: "ปีศาจตัวนั้น คือฉันเอง", nPrice: 360, nQuantity: 9, sAuthor: "MAY-I (เม-ไอ)", dReleaseDate: new Date("2025-09-25")},
-    { sID:"3",nNo: 3, sName: "ใครรู้ คนนั้นรอด", nPrice: 225, nQuantity: 99, sAuthor: "ดร.ตฤณห์ โพธิ์รักษา", dReleaseDate: new Date("2024-09-17")},
-    { sID:"4",nNo: 4, sName: "จดหมายจากดาวแมว", nPrice: 209, nQuantity: 365, sAuthor: "นทธี ศศิวิมล", dReleaseDate: new Date("2025-07-15")},
-    { sID:"5",nNo: 5, sName: "จิตวิทยาสายดาร์ก", nPrice: 250, nQuantity: 63, sAuthor: "Dr. Hiro", dReleaseDate: new Date("2024-10-25")},
-  ]);
+  const [items, setItems] = useState<Item[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  // ➤ ฟังก์ชันลบ
-  const handleDelete = (nNo: number) => {
+  // ➤ ดึงข้อมูลจาก Backend API
+  useEffect(() => {
+    async function fetchBooks() {
+      try {
+        const res = await fetch("http://localhost:5256/api/Book/GetAllBooks", { mode: "cors" });
+        if (!res.ok) throw new Error("Failed to fetch books");
+        const data: Item[] = await res.json();
+        console.log("Fetched data:", data);
+        setItems(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchBooks();
+  }, []);
+
+  // ➤ ฟังก์ชันลบเฉพาะฝั่ง Frontend
+  const handleDelete = (nBookID: number) => {
     const confirmDelete = window.confirm("ต้องการลบรายการนี้หรือไม่?");
     if (!confirmDelete) return;
 
-    setItems(items.filter((item) => item.nNo !== nNo));
+    setItems(items.filter((item) => item.nBookID !== nBookID));
   };
+
+  if (loading) return <div>กำลังโหลดข้อมูล...</div>;
 
   return (
     <div>
@@ -53,24 +70,24 @@ export default function ListPage() {
             </tr>
           </thead>
           <tbody>
-            {items.map((item) => (
-              <tr key={item.nNo}>
-                <td>{item.nNo}</td>
-                <td>{item.sName}</td>
+            {items.map((item, index) => (
+              <tr key={item.nBookID}>
+                <td>{index + 1}</td>
+                <td>{item.sNamebook}</td>
                 <td>{item.nPrice.toFixed(2)}</td>
                 <td>{item.nQuantity}</td>
                 <td>{item.sAuthor}</td>
-                <td>{item.dReleaseDate.toLocaleDateString()}</td>
+                <td>{new Date(item.dReleaseDate).toLocaleDateString()}</td>
                 <td>
                   <Link
-                    href={`/edit/${item.nNo}`}
+                    href={`/edit/${item.nBookID}`}
                     className={`${style.btn} ${style.btnEdit}`}
                   >
                     🖊
                   </Link>
 
                   <button
-                    onClick={() => handleDelete(item.nNo)}
+                    onClick={() => handleDelete(item.nBookID)}
                     className={`${style.btn} ${style.btnDelete}`}
                   >
                     🗑️

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using backend2.Models;
+using backend.Models;
 
-namespace backend2.Data;
+namespace backend.Data;
 
 public partial class MyDbContext : DbContext
 {
@@ -21,8 +21,7 @@ public partial class MyDbContext : DbContext
     public virtual DbSet<TbBook> TbBook { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
-        => optionsBuilder.UseSqlServer("Server=localhost;Database=BookDB;User Id=sa;Password=magna24685;TrustServerCertificate=True;");
+        => optionsBuilder.UseSqlServer("Name=ConnectionStrings:MyDB");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -30,43 +29,43 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<TbAuthor>(entity =>
         {
-            entity.HasKey(e => e.NAuthorId).HasName("PK__TbAuthor__1D377277646BFFED");
+            entity.HasKey(e => e.NAuthorId).HasName("PK__TbAuthou__80C43EBA26CDF552");
 
             entity.Property(e => e.NAuthorId)
                 .ValueGeneratedNever()
                 .HasColumnName("nAuthorID");
             entity.Property(e => e.SAuthorName)
-                .HasMaxLength(150)
+                .HasMaxLength(255)
                 .IsUnicode(false)
                 .HasColumnName("sAuthorName");
         });
 
         modelBuilder.Entity<TbBook>(entity =>
         {
-            entity.HasKey(e => e.NBookId).HasName("PK__TbBook__EA8ADEC0A439B842");
+            entity.HasKey(e => e.NBookId).HasName("PK__BookDB__EA8ADEC00C3B112D");
 
             entity.Property(e => e.NBookId)
                 .ValueGeneratedNever()
                 .HasColumnName("nBookID");
-            entity.Property(e => e.DDeleted)
+            entity.Property(e => e.DDelete)
                 .HasColumnType("datetime")
-                .HasColumnName("dDeleted");
+                .HasColumnName("dDelete");
             entity.Property(e => e.DRelease)
                 .HasColumnType("datetime")
                 .HasColumnName("dRelease");
             entity.Property(e => e.DUpdate)
                 .HasColumnType("datetime")
                 .HasColumnName("dUpdate");
-            entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
+            entity.Property(e => e.IsDelete).HasColumnName("isDelete");
             entity.Property(e => e.NAuthorId).HasColumnName("nAuthorID");
             entity.Property(e => e.NPrice)
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("nPrice");
             entity.Property(e => e.NQuantity).HasColumnName("nQuantity");
-            entity.Property(e => e.SBookName)
-                .HasMaxLength(250)
+            entity.Property(e => e.SNamebook)
+                .HasMaxLength(255)
                 .IsUnicode(false)
-                .HasColumnName("sBookName");
+                .HasColumnName("sNamebook");
         });
 
         OnModelCreatingPartial(modelBuilder);

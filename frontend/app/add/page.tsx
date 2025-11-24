@@ -3,26 +3,38 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import style from "../form.module.css";
 
-
 export default function AddPage() {
   const [name, setName] = useState("");
-  const [price, setPrice] = useState(10);
+  const [price, setPrice] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [author, setAuthor] = useState("");
   const [releaseDate, setReleaseDate] = useState("");
   const router = useRouter();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({
-      name,
-      price: Number(price.toFixed(2)),
-      quantity,
-      author,
-      releaseDate,
-    });
-    alert("เพิ่มสำเร็จ!");
-    router.push("/book");
+
+    try {
+      const res = await fetch("http://localhost:5256/api/Book/AddBook", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sNamebook: name,
+          nPrice: price,
+          nQuantity: quantity,
+          sAuthor: author,
+          dReleaseDate: releaseDate
+        })
+      });
+
+      if (!res.ok) throw new Error("Failed to add book");
+
+      alert("เพิ่มหนังสือสำเร็จ!");
+      router.push("/book"); // กลับหน้า List
+    } catch (err) {
+      console.error(err);
+      alert("เพิ่มหนังสือไม่สำเร็จ");
+    }
   };
 
   return (
@@ -74,7 +86,7 @@ export default function AddPage() {
         </div>
 
         <div className={style.formGroup}>
-          <label>วันที่ผลิต</label>
+          <label>วันที่วางจำหน่าย</label>
           <input
             type="date"
             value={releaseDate}
