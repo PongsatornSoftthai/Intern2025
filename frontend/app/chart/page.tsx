@@ -4,6 +4,7 @@ import * as am5 from "@amcharts/amcharts5";
 import * as am5xy from "@amcharts/amcharts5/xy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
 import { useEffect, useRef } from "react";
+import style from "./chart.module.css"; 
 
 interface Item {
   sID: string;
@@ -61,7 +62,7 @@ export default function ChartPage() {
     );
     xAxis.data.setAll(data);
 
-    // Y Axis (Quantity)
+    // Y Axis
     const yAxis = chart.yAxes.push(
       am5xy.ValueAxis.new(root, {
         renderer: am5xy.AxisRendererY.new(root, {})
@@ -89,6 +90,20 @@ export default function ChartPage() {
       strokeOpacity: 0,
     });
 
+    // ⭐ Event คลิกที่แท่งกราฟ (แก้ไขแล้ว)
+    series.columns.template.events.on("click", (ev) => {
+      const dataItem = ev.target.dataItem;
+
+      if (dataItem) {
+        const ctx: any = dataItem.dataContext;
+
+        const bookName = ctx.name;
+        const qty = ctx.quantity;
+
+        alert(`📘 ${bookName}\nจำนวนคงเหลือ: ${qty} เล่ม`);
+      }
+    });
+
     series.data.setAll(data);
 
     // Animations
@@ -102,14 +117,15 @@ export default function ChartPage() {
 
   return (
     <div>
-      <h2 style={{ textAlign: "center", marginBottom: "20px" }}>
+      <h2 className={style.chartTitle}>
         กราฟจำนวนหนังสือ (Bar Chart)
       </h2>
 
       <div
         ref={chartRef}
-        style={{ width: "100%", height: "350px" }}
+        className={style.chartContainer}
       ></div>
+
     </div>
   );
 }

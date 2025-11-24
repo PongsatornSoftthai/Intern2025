@@ -6,13 +6,13 @@
 .headerTitle h2 {
   font-size: 28px;
   font-weight: 600;
-  margin-bottom: 28px;
+  margin-bottom: 10px;
   color: #111827;
 }
 
 /* Section */
 .section {
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
 
 /* Section Header */
@@ -20,7 +20,7 @@
   font-size: 18px;
   font-weight: 600;
   color: #1f2937;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
 
 /* Book List */
@@ -43,7 +43,7 @@
 
 .bookCard {
   min-width: 150px;
-  padding: 16px;
+  padding: 10px;
   background-color: #fff4d9; /* โทนอุ่นตัดกับพื้นหลังครีม */
   border-radius: 10px;
   text-align: center;

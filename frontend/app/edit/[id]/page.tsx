@@ -13,6 +13,8 @@ export default function EditPage() {
   const [author, setAuthor] = useState("Example Author");
   const [releaseDate, setReleaseDate] = useState("2023-01-01");
 
+
+  
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log({ name, price, quantity, author, releaseDate });
