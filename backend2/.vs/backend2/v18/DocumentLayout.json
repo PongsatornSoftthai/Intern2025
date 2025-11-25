@@ -136,7 +136,7 @@
         },
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -163,10 +163,6 @@
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "SchoolService.cs",
@@ -176,8 +172,7 @@
               "RelativeToolTip": "Service\\SchoolService.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAswB0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T04:43:03.413Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T04:43:03.413Z"
             },
             {
               "$type": "Document",
@@ -202,8 +197,7 @@
               "RelativeToolTip": "Data\\MyDbContext.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAuwA8AAAAFAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T04:45:00.191Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T04:45:00.191Z"
             },
             {
               "$type": "Document",
@@ -215,8 +209,11 @@
               "RelativeToolTip": "backend2.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-24T04:46:23.815Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T04:46:23.815Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         },

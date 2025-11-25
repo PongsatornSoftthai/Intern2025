@@ -4,6 +4,10 @@
     flex-direction: column;
 }
 
+.title{
+    color: #12181e;
+}
+
 .cardsContainer {
     display: flex;
     gap: 20px;

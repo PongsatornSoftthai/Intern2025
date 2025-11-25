@@ -40,7 +40,7 @@ export default function GetTeachers() {
     return (
         <div className={styles.container}>
             <section>
-                <h2>รายชื่ออาจารย์ทั้งหมด</h2>
+                <h2 className={styles.title}>รายชื่ออาจารย์ทั้งหมด</h2>
                 <table className={styles.table}>
                     <thead>
                         <tr>

@@ -36,7 +36,7 @@ export default function GetSubjects() {
   return (
     <div className={styles.container}>
       <section>
-        <h2>รายวิชาทั้งหมด</h2>
+        <h2 className={styles.title}>รายวิชาทั้งหมด</h2>
         <table className={styles.table}>
           <thead>
             <tr>
