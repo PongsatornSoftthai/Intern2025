@@ -50,6 +50,68 @@
         }
       }
     },
+    "/api/School/AddTeacher": {
+      "post": {
+        "tags": [
+          "School"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TbTeachers"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TbTeachers"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TbTeachers"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/School/AddSubject": {
+      "post": {
+        "tags": [
+          "School"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TbSubjects"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TbSubjects"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TbSubjects"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -92,6 +154,69 @@
   },
   "components": {
     "schemas": {
+      "TbSubjects": {
+        "type": "object",
+        "properties": {
+          "sSubjectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sName": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "nCredit": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TbTeachers": {
+        "type": "object",
+        "properties": {
+          "sTeacherId": {
+            "type": "string",
+            "nullable": true
+          },
+          "sFirstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sLastName": {
+            "type": "string",
+            "nullable": true
+          },
+          "sGender": {
+            "type": "string",
+            "nullable": true
+          },
+          "dBirthDate": {
+            "type": "string",
+            "format": "date",
+            "nullable": true
+          },
+          "sAddress": {
+            "type": "string",
+            "nullable": true
+          },
+          "sPhoneNumber": {
+            "type": "string",
+            "nullable": true
+          },
+          "isDeleted": {
+            "type": "boolean"
+          },
+          "sSubjectId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "WeatherForecast": {
         "type": "object",
         "properties": {

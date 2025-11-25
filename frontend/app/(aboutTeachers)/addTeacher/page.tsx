@@ -1,55 +1,106 @@
 'use client'
 import React, { useState } from "react";
-import styles from  "../../css/addForm.module.css";;
+import styles from "../../css/addForm.module.css";;
 
 interface IFormData {
-    sTeaId: string;
-    sTeaFname: string;
-    sTeaLname: string;
-    sTeaSex: "ชาย" | "หญิง";
-    dTeaBdate: string; //กำหนดรับค่าเป็น string 
-    sTeaAdd: string;
-    sTeaTel: string;
-    sFacName: string;
+    sTeacherId: string;
+    sFirstName: string;
+    sLastName: string;
+    sGender: string;
+    dBirthDate: string; // เก็บเป็น string จาก backend
+    sAddress: string;
+    sPhoneNumber: string;
+    sSubjectId: string;
 }
 
 export default function AddTeacher() {
 
     const [formData, setFormData] = useState<IFormData>({
-        sTeaId: "",
-        sTeaFname: "",
-        sTeaLname: "",
-        sTeaSex: "ชาย",
-        dTeaBdate: "",
-        sTeaAdd: "",
-        sTeaTel: "",
-        sFacName:"",
+        sTeacherId: "",
+        sFirstName: "",
+        sLastName: "",
+        sGender: "",
+        dBirthDate: "",// เก็บเป็น string จาก backend
+        sAddress: "",
+        sPhoneNumber: "",
+        sSubjectId: "",
     });
 
     const [teachers, setTeachers] = useState<IFormData[]>([]);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
-        setFormData((prev) => ({
+        setFormData(prev => ({
             ...prev,
-            [name]: value,
+            [name]: value
         }));
-    }
+    };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.sTeaId || !formData.sTeaFname || !formData.sTeaLname || !formData.sTeaSex || !formData.dTeaBdate || !formData.sTeaAdd || !formData.sTeaTel||!formData.sFacName) {
-            alert("กรุณากรอกข้อมูลให้ครบถ้วน")
+        //เช็คว่ามีค่าบ้าง
+        if (!formData.sTeacherId || !formData.sFirstName || !formData.sLastName || !formData.sGender || !formData.dBirthDate || !formData.sAddress || !formData.sPhoneNumber || !formData.sSubjectId) {
+            alert("กรุณากรอกข้อมูลให้ครบถ้วน");
             return;
         }
 
-        setTeachers((prev) =>
-            [...prev, formData].sort((a, b) => a.sTeaId.localeCompare(b.sTeaId))
-        );
+        //รหัสอาจารย์ต้องมีรูปแบบ เช่น T200001
+        const teacherIdRegex = /^T\d{6}$/;
 
-        setFormData({ sTeaId: "", sTeaFname: "", sTeaLname: "", sTeaSex: "ชาย", dTeaBdate: "", sTeaAdd: "", sTeaTel: "" ,sFacName:""});
-    };
+        // ตัวเลข 10 หลัก
+        const phoneRegex = /^\d{10}$/;
+
+        // รหัสวิชาแบบ 3 ตัวเลข - 3 ตัวเลข
+        const subjectRegex = /^[0-9]{3}-[0-9]{3}$/;
+
+        if (!teacherIdRegex.test(formData.sTeacherId)) {
+            alert("รหัสอาจารย์ต้องขึ้นต้นด้วย T ตามด้วยตัวเลข 6 หลัก เช่น T200001");
+            return;
+        }
+
+        if (!phoneRegex.test(formData.sPhoneNumber)) {
+            alert("เบอร์โทรต้องเป็นตัวเลข 10 หลัก");
+            return;
+        }
+
+        if (!subjectRegex.test(formData.sSubjectId)) {
+            alert("รหัสวิชาต้องอยู่ในรูปแบบ 001-102");
+            return;
+        }
+
+        try {//ส่งข้อมูลไป API
+            const res = await fetch("https://localhost:7127/api/School/AddTeacher", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) {
+                alert(result.message);
+            } else {
+                alert("ผิดพลาด: " + result.message);
+            }
+
+            //เคลียร์ฟอร์ม
+            setFormData({
+                sTeacherId: "",
+                sFirstName: "",
+                sLastName: "",
+                sGender: "",
+                dBirthDate: "",// เก็บเป็น string จาก backend
+                sAddress: "",
+                sPhoneNumber: "",
+                sSubjectId: "",
+            });
+        } catch (err) {
+            console.error(err);
+            alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+        }
+
+    }
 
     return (
         <div>
@@ -62,8 +113,8 @@ export default function AddTeacher() {
                         <label >รหัสอาจารย์: </label>
                         <input
                             type="text"
-                            name="sTeaId"
-                            value={formData.sTeaId}
+                            name="sTeacherId"
+                            value={formData.sTeacherId}
                             onChange={handleChange}
                             className={styles.input}
                         />
@@ -72,8 +123,8 @@ export default function AddTeacher() {
                         <label >ชื่อ: </label>
                         <input
                             type="text"
-                            name="sTeaFname"
-                            value={formData.sTeaFname}
+                            name="sFirstName"
+                            value={formData.sFirstName}
                             onChange={handleChange}
                             className={styles.input}
                         />
@@ -82,8 +133,8 @@ export default function AddTeacher() {
                         <label >นามสกุล: </label>
                         <input
                             type="text"
-                            name="sTeaLname"
-                            value={formData.sTeaLname}
+                            name="sLastName"
+                            value={formData.sLastName}
                             onChange={handleChange}
                             className={styles.input}
                         />
@@ -91,11 +142,12 @@ export default function AddTeacher() {
                     <div>
                         <label >เพศ: </label>
                         <select
-                            name="sTeaSex"
-                            value={formData.sTeaSex}
+                            name="sGender"
+                            value={formData.sGender}
                             onChange={handleChange}
                             className={styles.input}
                         >
+                            <option value="">--เลือกเพศ--</option>
                             <option value="ชาย">ชาย</option>
                             <option value="หญิง">หญิง</option>
                         </select>
@@ -104,8 +156,8 @@ export default function AddTeacher() {
                         <label >วันเกิด: </label>
                         <input
                             type="date"
-                            name="dTeaBdate"
-                            value={formData.dTeaBdate}
+                            name="dBirthDate"
+                            value={formData.dBirthDate}
                             onChange={handleChange}
                             className={styles.input}
                         />
@@ -113,9 +165,9 @@ export default function AddTeacher() {
                     <div>
                         <label >ที่อยู่: </label>
                         <input
-                            type="string"
-                            name="sTeaAdd"
-                            value={formData.sTeaAdd}
+                            type="text"
+                            name="sAddress"
+                            value={formData.sAddress}
                             onChange={handleChange}
                             className={styles.input}
                         />
@@ -123,68 +175,28 @@ export default function AddTeacher() {
                     <div>
                         <label >เบอร์โทร: </label>
                         <input
-                            type="string"
-                            name="sTeaTel"
-                            value={formData.sTeaTel}
+                            type="text"
+                            name="sPhoneNumber"
+                            value={formData.sPhoneNumber}
+                            onChange={handleChange}
+                            className={styles.input}
+                            maxLength={10}
+                            pattern="\d{10}"
+                        />
+                    </div>
+                    <div>
+                        <label >รหัสวิชาที่สอน: </label>
+                        <input
+                            type="text"
+                            name="sSubjectId"
+                            value={formData.sSubjectId}
                             onChange={handleChange}
                             className={styles.input}
                         />
                     </div>
-                    <div>
-                        <label >สังกัดคณะ: </label>
-                        <select
-                            name="sFacName"
-                            value={formData.sFacName}
-                            onChange={handleChange}
-                            className={styles.input}
-                        >
-                            <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
-                            <option value="ศึกษาศาสตร์">ศึกษาศาสตร์</option>
-                            <option value="รัฐศาสตร์">รัฐศาสตร์</option>
-                        </select>
-                    </div>
                     <button type="submit" className={styles.button}>เพิ่มอาจารย์</button>
                 </form>
             </div>
-
-            <div className={styles.container} style={{ maxWidth: "1200px" }}>
-                <h3>รายชื่ออาจารย์ทั้งหมด</h3>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th>ลำดับ</th>
-                            <th>รหัสอาจารย์</th>
-                            <th>ชื่อ</th>
-                            <th>นามสกุล</th>
-                            <th>เพศ</th>
-                            <th>วัน/เดือน/ปีเกิด</th>
-                            <th>ที่อยู่</th>
-                            <th>เบอร์โทร</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {teachers.map((T, index) => (
-                            <tr key={T.sTeaId}>
-                                <td>{index + 1}</td>
-                                <td>{T.sTeaId}</td>
-                                <td>{T.sTeaFname}</td>
-                                <td>{T.sTeaLname}</td>
-                                <td>{T.sTeaSex}</td>
-                                <td>
-                                    {new Date(T.dTeaBdate).toLocaleDateString("th-TH", {
-                                        day: "numeric",
-                                        month: "numeric",
-                                        year: "numeric",
-                                    })}
-                                </td>
-                                <td>{T.sTeaAdd}</td>
-                                <td>{T.sTeaTel}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-
         </div>
     );
 }

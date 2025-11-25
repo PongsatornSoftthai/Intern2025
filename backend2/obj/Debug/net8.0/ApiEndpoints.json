@@ -1,6 +1,38 @@
 [
   {
     "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "AddSubject",
+    "RelativePath": "api/School/AddSubject",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "subject",
+        "Type": "backend2.Models.TbSubjects",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "AddTeacher",
+    "RelativePath": "api/School/AddTeacher",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "teacher",
+        "Type": "backend2.Models.TbTeachers",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
     "Method": "GetAllSubjects",
     "RelativePath": "api/School/GetAllSubjects",
     "HttpMethod": "GET",

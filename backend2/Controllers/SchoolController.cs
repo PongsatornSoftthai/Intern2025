@@ -1,7 +1,9 @@
 ﻿//การ impoert namespace เพื่อเข้าถึง Service
+using backend2.Models;
 using backend2.Service;
 //สำหรับการสร้าง controller และ api 
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 //namespace = ตู้เก็บของ เก็บ class , interface, อื่น ๆ เรียกใช้ต้องอ้าง namespace นั้น ๆ
 //กำหนด namespace ระบุว่า controller นี้อยู่ในโฟลเดอร์ backend2.Controllers
@@ -53,5 +55,32 @@ namespace backend2.Controllers
             var subjects = _schoolService.GetAllSubjects();
             return Ok(subjects);
         }
+
+        [HttpPost]
+        public IActionResult AddTeacher([FromBody] TbTeachers teacher)
+        {
+            if (_schoolService.AddTeacher(teacher,out string msg))
+            {
+                return Ok(new { message = msg });
+            }
+            else
+            {
+                return BadRequest(new { message = msg });
+            }
+        }
+
+        [HttpPost]
+        public IActionResult AddSubject([FromBody] TbSubjects subject)
+        {
+            if (_schoolService.AddSubject(subject, out string msg))
+            {
+                return Ok(new { message = msg });
+            }
+            else
+            {
+                return BadRequest(new { message = msg });
+            }
+        }
+
     }
 }
