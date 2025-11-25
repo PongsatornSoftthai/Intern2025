@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\intern2025\\backend2\\model\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|solutionrelative:model\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\intern2025\\backend2\\backend2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|solutionrelative:backend2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\intern2025\\backend2\\data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|solutionrelative:data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Model\\MyDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Model\\MyDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\intern2025\\backend2\\service\\schoolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|solutionrelative:service\\schoolservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Data\\MyDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Data\\MyDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\intern2025\\backend2\\controllers\\schoolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|solutionrelative:controllers\\schoolcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\intern2025\\backend2\\backend2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|solutionrelative:backend2.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F42FD2D6-01BB-49A7-A9A8-392A42E5C485}|backend2.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\intern2025\\backend2\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -148,7 +148,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "SchoolService.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Service\\SchoolService.cs",
               "RelativeDocumentMoniker": "Service\\SchoolService.cs",
@@ -157,8 +157,7 @@
               "ViewState": "AgIAAC8AAAAAAAAAAAAUwBsAAAAVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T04:43:03.413Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -185,19 +184,17 @@
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "MyDbContext.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Data\\MyDbContext.cs",
               "RelativeDocumentMoniker": "Data\\MyDbContext.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Data\\MyDbContext.cs",
               "RelativeToolTip": "Data\\MyDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-25T09:40:45.504Z"
+              "WhenOpened": "2025-11-25T09:40:45.504Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -213,7 +210,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "SchoolController.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Controllers\\SchoolController.cs",
               "RelativeDocumentMoniker": "Controllers\\SchoolController.cs",
@@ -237,28 +234,31 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "MyDbContext.cs",
-              "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Model\\MyDbContext.cs",
-              "RelativeDocumentMoniker": "Model\\MyDbContext.cs",
-              "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\Model\\MyDbContext.cs",
-              "RelativeToolTip": "Model\\MyDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAFAAAAAAAAAA==",
+              "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\model\\MyDbContext.cs",
+              "RelativeDocumentMoniker": "model\\MyDbContext.cs",
+              "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\model\\MyDbContext.cs",
+              "RelativeToolTip": "model\\MyDbContext.cs",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T04:45:00.191Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T04:45:00.191Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "backend2.csproj",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\backend2.csproj",
               "RelativeDocumentMoniker": "backend2.csproj",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E32\\project\\Intern2025\\backend2\\backend2.csproj",
               "RelativeToolTip": "backend2.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAtAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAswBIAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-24T04:46:23.815Z"
+              "WhenOpened": "2025-11-24T04:46:23.815Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         },
