@@ -38,12 +38,28 @@ export default function ListPage() {
   }, []);
 
   // ➤ ฟังก์ชันลบเฉพาะฝั่ง Frontend
-  const handleDelete = (nBookID: number) => {
-    const confirmDelete = window.confirm("ต้องการลบรายการนี้หรือไม่?");
-    if (!confirmDelete) return;
+    const handleDelete = async (nBookID: number) => {
+      const confirmDelete = window.confirm("ต้องการลบรายการนี้หรือไม่?");
+      if (!confirmDelete) return;
 
-    setItems(items.filter((item) => item.nBookID !== nBookID));
-  };
+      try {
+        const res = await fetch(`http://localhost:5256/api/Book/DeleteBook/DeleteBook/${nBookID}`, {
+          method: "PUT", // soft delete ใช้ PUT
+          headers: { "Content-Type": "application/json" },
+        });
+
+        if (!res.ok) throw new Error("Delete failed");
+
+        // ถ้า delete สำเร็จ ลบออกจาก state
+        setItems((prev) => prev.filter((item) => item.nBookID !== nBookID));
+
+        alert("ลบสำเร็จ!");
+      } catch (err) {
+        console.error(err);
+        alert("ลบไม่สำเร็จ");
+      }
+    };
+
 
   if (loading) return <div>กำลังโหลดข้อมูล...</div>;
 

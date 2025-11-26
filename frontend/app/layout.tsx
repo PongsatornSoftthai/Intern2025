@@ -10,17 +10,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="th">
-      <body>
+      <body className={styles.body}>
         {/* Header */}
-        <header className={styles.header}>คลังหนังสือ📚</header>
+        <header className={styles.header}>
+          <h1>คลังหนังสือ📚</h1>
+        </header>
 
-        {/* Navbar / Search */}
-        <nav className={styles.navbar}>
-          <span className={styles.label}>ค้นหาหนังสือ🔍</span>
-          <input type="text" placeholder="พิมพ์ชื่อหนังสือ..." />
-        </nav> 
-
-        {/* Content */}
+        {/* Layout Content */}
         <div className={styles.content}>
           {/* Sidebar */}
           <aside className={styles.sidebar}>
@@ -42,7 +38,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         {/* Footer */}
-        <footer className={styles.footer}>© ณ หอสมุดแห่งหนึ่ง</footer>
+        <footer className={styles.footer}>
+          © ณ หอสมุดแห่งหนึ่ง
+        </footer>
       </body>
     </html>
   );

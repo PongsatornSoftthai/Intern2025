@@ -29,11 +29,9 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<TbAuthor>(entity =>
         {
-            entity.HasKey(e => e.NAuthorId).HasName("PK__TbAuthou__80C43EBA26CDF552");
+            entity.HasKey(e => e.NAuthorId);
 
-            entity.Property(e => e.NAuthorId)
-                .ValueGeneratedNever()
-                .HasColumnName("nAuthorID");
+            entity.Property(e => e.NAuthorId).HasColumnName("nAuthorID");
             entity.Property(e => e.SAuthorName)
                 .HasMaxLength(255)
                 .IsUnicode(false)
@@ -42,11 +40,9 @@ public partial class MyDbContext : DbContext
 
         modelBuilder.Entity<TbBook>(entity =>
         {
-            entity.HasKey(e => e.NBookId).HasName("PK__BookDB__EA8ADEC00C3B112D");
+            entity.HasKey(e => e.NBookId).HasName("PK__TbBook__E769F0E2E51F27D2");
 
-            entity.Property(e => e.NBookId)
-                .ValueGeneratedNever()
-                .HasColumnName("nBookID");
+            entity.Property(e => e.NBookId).HasColumnName("nBookID");
             entity.Property(e => e.DDelete)
                 .HasColumnType("datetime")
                 .HasColumnName("dDelete");

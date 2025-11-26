@@ -34,9 +34,9 @@ namespace backend2.Controllers
 
         // ⭐ อัปเดตข้อมูลหนังสือ
         [HttpPut]
-        public IActionResult UpdateBook(int nBookID, [FromBody] BookDto bookDto)
+        public IActionResult UpdateBook([FromBody] BookDto bookDto)
         {
-            if (bookDto == null || nBookID != bookDto.nBookID)
+            if (bookDto == null)
                 return BadRequest();
 
             var updated = _bookService.UpdateBook(bookDto);
@@ -44,6 +44,7 @@ namespace backend2.Controllers
 
             return Ok(bookDto);
         }
+
 
         [HttpPost]
         public IActionResult AddBook([FromBody] BookDto book)
@@ -58,6 +59,17 @@ namespace backend2.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        [HttpPut("DeleteBook/{id}")]
+        public IActionResult DeleteBook(int id)
+        {
+            var result = _bookService.SoftDeleteBook(id);
+            if (!result)
+                return NotFound(new { message = "Book not found" });
+
+            return Ok(new { message = "Book deleted successfully" });
+        }
+
 
     }
 }

@@ -5,8 +5,6 @@ namespace backend.Models;
 
 public partial class TbBook
 {
-    public int NBookId { get; set; }
-
     public string SNamebook { get; set; } = null!;
 
     public decimal NPrice { get; set; }
@@ -22,4 +20,6 @@ public partial class TbBook
     public bool IsDelete { get; set; }
 
     public DateTime? DDelete { get; set; }
+
+    public int NBookId { get; set; }
 }

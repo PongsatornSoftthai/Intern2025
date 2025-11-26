@@ -29,6 +29,7 @@ export default function HomePage() {
 
   return (
     <div className={styles.homeContainer}>
+      {/* Header */}
       <div className={styles.headerTitle}>
         <h2>📚 หน้าหลัก</h2>
         <p className={styles.subText}>แนะนำหนังสือที่น่าสนใจสำหรับคุณ</p>
@@ -41,7 +42,7 @@ export default function HomePage() {
         </div>
 
         <div className={styles.bookList}>
-          {newBooks.map((book: BookItem) => (
+          {newBooks.map((book) => (
             <div key={book.id} className={styles.bookCard}>
               <span className={styles.tagNew}>{book.tag}</span>
               <p className={styles.bookTitle}>{book.title}</p>
@@ -57,7 +58,7 @@ export default function HomePage() {
         </div>
 
         <div className={styles.bookList}>
-          {popularBooks.map((book: BookItem) => (
+          {popularBooks.map((book) => (
             <div key={book.id} className={styles.bookCard}>
               <span className={styles.tagHot}>{book.tag}</span>
               <p className={styles.bookTitle}>{book.title}</p>

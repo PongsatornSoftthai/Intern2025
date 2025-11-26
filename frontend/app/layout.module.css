@@ -1,68 +1,37 @@
-/* layout.module.css */
-
 /* Header */
 .header {
-  background: linear-gradient(to right, #1e40af, #3b82f6);
+  background: linear-gradient(to right, #4f46e5, #7c3aed); /* ม่วงเข้ม → ม่วงอมฟ้า สวยสบายตา */
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 1.8rem;
-  padding: 16px;
-  border-radius: 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-
+  font-size: 1.2rem; /* ลดขนาดตัวอักษรอีกนิด */
+  padding: 6px 0;  /* ลดความสูง */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* shadow เบา */
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-radius: 0 0 6px 6px;
 }
 
-/* Navbar / Search */
-.navbar {
-  background-color: rgba(215, 235, 247, 0.821);
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-  border-radius: 24px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 16px;
-  width: 75%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.navbar input {
-  padding: 8px 12px;
-  border: 1px solid #000000; 
-  border-radius: 24px;
-  flex: 1;
-  max-width: 75%;
-  outline: none;
-}
-
-.navbar input:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
-}
-
-/* Content Area */
+/* Layout */
 .content {
   display: flex;
   flex: 1;
-  gap: 24px;
-  padding: 24px;
-  margin-top: 16px;
+  gap: 16px;
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f4f6ff; /* ฟ้า very light สดใส สบายตา */
 }
 
 /* Sidebar */
 .sidebar {
-  width: 16%; 
-  background-color: #bfdbfe; 
+  width: 200px;
+  background-color: #e0e7ff; /* ฟ้าอ่อน */
   border-radius: 8px;
   padding: 16px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  flex-shrink: 0;
 }
 
 .sidebar ul {
@@ -73,48 +42,69 @@
 
 .sidebar li {
   margin-bottom: 12px;
-  padding-bottom: 8px;
-  border-bottom: 1px solid #4d4d4d;
+  padding-bottom: 6px;
+  border-bottom: 1px solid #c7d2fe;
 }
 
 .sidebar a {
-  color: #374151; 
+  color: #1e3a8a; /* น้ำเงินเข้ม */
   text-decoration: none;
-  transition: color 0.2s;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.2s ease;
 }
 
 .sidebar a:hover {
-  color: #3b82f6; 
+  color: #7c3aed; /* ม่วงสด */
+  transform: translateX(3px);
 }
 
 /* Main Content */
 .main {
   flex: 1;
-  background-color: #f5efef;
+  background-color: #ffffff; /* ขาวสบายตา */
   border-radius: 8px;
   padding: 24px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 /* Footer */
 .footer {
-  background-color: #a8aeb9; 
+  background-color: #4f46e5; /* ม่วงเข้มเข้ากับ Header */
   color: white;
   text-align: center;
-  padding: 16px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
-  margin-top: 24px;
+  padding: 14px 0; /* ลดความสูง */
+  font-weight: 500;
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+  border-radius: 6px 6px 0 0;
 }
 
 /* Optional Global Reset */
 :global(body) {
   margin: 0;
   padding: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f3f4f6;
+  font-family: 'Sarabun', Arial, Helvetica, sans-serif;
+  background-color: #eef2ff; /* พื้นหลังรวมสบายตา */
   color: #171717;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   box-sizing: border-box;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .content {
+    flex-direction: column;
+    padding: 12px;
+  }
+
+  .sidebar {
+    width: 100%;
+    margin-bottom: 12px;
+  }
+
+  .main {
+    padding: 16px;
+  }
 }

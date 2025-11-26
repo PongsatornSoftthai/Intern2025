@@ -8,9 +8,10 @@ namespace backend2.Service
     public interface IBookService
     {
         List<BookDto> GetAllBooks();
-        List<BookDto> GetBookByID(int nBookID);
+        BookDto GetBookByID(int nBookID); // แก้จาก List<BookDto> เป็น BookDto
         bool UpdateBook(BookDto book);
-        bool AddBook(BookDto book); // ➤ เพิ่มสำหรับเพิ่มหนังสือ
+        bool AddBook(BookDto book);
+        bool SoftDeleteBook(int id);
     }
 
     public class BookService : IBookService
@@ -22,11 +23,13 @@ namespace backend2.Service
             _db = db;
         }
 
+        // ดึงข้อมูลทั้งหมด
         public List<BookDto> GetAllBooks()
         {
             var data = (from b in _db.TbBook
                         join a in _db.TbAuthor
                         on b.NAuthorId equals a.NAuthorId
+                        where b.IsDelete == false
                         select new BookDto
                         {
                             nBookID = b.NBookId,
@@ -40,12 +43,13 @@ namespace backend2.Service
             return data;
         }
 
-        public List<BookDto> GetBookByID(int nBookID)
+        // ดึงข้อมูลหนังสือเฉพาะเล่ม
+        public BookDto GetBookByID(int nBookID)
         {
             var data = (from b in _db.TbBook
                         join a in _db.TbAuthor
                         on b.NAuthorId equals a.NAuthorId
-                        where b.NBookId == nBookID
+                        where b.NBookId == nBookID && b.IsDelete == false
                         select new BookDto
                         {
                             nBookID = b.NBookId,
@@ -54,11 +58,12 @@ namespace backend2.Service
                             nQuantity = b.NQuantity,
                             sAuthor = a.SAuthorName,
                             dReleaseDate = b.DRelease
-                        }).ToList();
+                        }).FirstOrDefault();
 
             return data;
         }
 
+        // อัปเดตข้อมูลหนังสือ
         public bool UpdateBook(BookDto book)
         {
             var existingBook = _db.TbBook.FirstOrDefault(b => b.NBookId == book.nBookID);
@@ -69,20 +74,26 @@ namespace backend2.Service
             existingBook.NQuantity = book.nQuantity;
             existingBook.DRelease = book.dReleaseDate;
 
+            // ถ้าผู้แต่งยังไม่มี ให้สร้างใหม่
             var author = _db.TbAuthor.FirstOrDefault(a => a.SAuthorName == book.sAuthor);
-            if (author != null)
-                existingBook.NAuthorId = author.NAuthorId;
+            if (author == null)
+            {
+                author = new TbAuthor { SAuthorName = book.sAuthor };
+                _db.TbAuthor.Add(author);
+                _db.SaveChanges();
+            }
+
+            existingBook.NAuthorId = author.NAuthorId;
 
             _db.SaveChanges();
             return true;
         }
 
-        // 🔹 เพิ่มหนังสือใหม่
+        // เพิ่มหนังสือใหม่
         public bool AddBook(BookDto book)
         {
             var author = _db.TbAuthor.FirstOrDefault(a => a.SAuthorName == book.sAuthor);
 
-            // ถ้ายังไม่มีผู้แต่ง ให้เพิ่มก่อน
             if (author == null)
             {
                 author = new TbAuthor { SAuthorName = book.sAuthor };
@@ -103,5 +114,18 @@ namespace backend2.Service
             _db.SaveChanges();
             return true;
         }
+
+        public bool SoftDeleteBook(int id)
+        {
+            var book = _db.TbBook.FirstOrDefault(b => b.NBookId == id);
+            if (book == null) return false;
+
+            book.IsDelete = true;       // soft delete
+            book.DDelete = DateTime.Now;
+
+            _db.SaveChanges();
+            return true;
+        }
+
     }
 }
