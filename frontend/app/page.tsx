@@ -31,7 +31,6 @@ export default function HomePage() {
     <div className={styles.homeContainer}>
       {/* Header */}
       <div className={styles.headerTitle}>
-        <h2>📚 หน้าหลัก</h2>
         <p className={styles.subText}>แนะนำหนังสือที่น่าสนใจสำหรับคุณ</p>
       </div>
 

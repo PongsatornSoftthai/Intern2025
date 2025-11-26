@@ -22,4 +22,6 @@ public partial class TbBook
     public DateTime? DDelete { get; set; }
 
     public int NBookId { get; set; }
+
+    public string? SCategory { get; set; }
 }

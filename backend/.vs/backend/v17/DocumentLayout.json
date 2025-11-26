@@ -7,12 +7,12 @@
       "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:service\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\model\\bookdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:model\\bookdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\model\\bookdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:model\\bookdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -41,7 +41,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 229,
-          "SelectedChildIndex": 27,
+          "SelectedChildIndex": 26,
           "Children": [
             {
               "$type": "Bookmark",
@@ -144,10 +144,6 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "Program.cs",
@@ -157,8 +153,7 @@
               "RelativeToolTip": "Program.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T03:50:15.358Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T03:50:15.358Z"
             },
             {
               "$type": "Document",
@@ -168,10 +163,14 @@
               "RelativeDocumentMoniker": "Service\\BookService.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Service\\BookService.cs",
               "RelativeToolTip": "Service\\BookService.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAGIAAAAAAAAAAAAUwHIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T03:51:26.326Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             },
             {
               "$type": "Document",
@@ -181,20 +180,20 @@
               "RelativeDocumentMoniker": "Data\\MyDbContext.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Data\\MyDbContext.cs",
               "RelativeToolTip": "Data\\MyDbContext.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAowBUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T03:06:25.184Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "BookController.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Controllers\\BookController.cs",
               "RelativeDocumentMoniker": "Controllers\\BookController.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Controllers\\BookController.cs",
               "RelativeToolTip": "Controllers\\BookController.cs",
-              "ViewState": "AgIAADcAAAAAAAAAAAAqwEcAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADMAAAAAAAAAAAAowEgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T06:56:36.646Z",
               "EditorCaption": ""
@@ -237,7 +236,7 @@
         },
         {
           "DockedWidth": 171,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Bookmark",
@@ -264,21 +263,21 @@
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "BookDto.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Model\\BookDto.cs",
               "RelativeDocumentMoniker": "Model\\BookDto.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Model\\BookDto.cs",
               "RelativeToolTip": "Model\\BookDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T07:49:27.969Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         },

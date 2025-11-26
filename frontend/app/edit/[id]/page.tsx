@@ -9,6 +9,7 @@ interface Book {
   nPrice: number; 
   nQuantity: number; 
   sAuthor: string; 
+  sCategory: string;
   dReleaseDate: string; 
 } 
 
@@ -19,6 +20,7 @@ export default function EditPage() {
   const [price, setPrice] = useState(0); 
   const [quantity, setQuantity] = useState(0); 
   const [author, setAuthor] = useState(""); 
+  const [category, setCategory] = useState("");
   const [releaseDate, setReleaseDate] = useState(""); 
   const [loading, setLoading] = useState(true);
 
@@ -34,6 +36,7 @@ export default function EditPage() {
         setPrice(data.nPrice);
         setQuantity(data.nQuantity);
         setAuthor(data.sAuthor);
+        setCategory(data.sCategory);
         setReleaseDate(data.dReleaseDate?.split("T")[0] || "");
       } catch (err) { 
         console.error(err); 
@@ -58,6 +61,7 @@ export default function EditPage() {
             nPrice: price,
             nQuantity: quantity,
             sAuthor: author,
+            sCategory: category,
             dReleaseDate: releaseDate
         })
       });
@@ -94,6 +98,27 @@ export default function EditPage() {
           <label>ผู้แต่ง</label> 
           <input type="text" value={author} onChange={(e) => setAuthor(e.target.value)} /> 
         </div>
+        <div className={styles.formGroup}>
+            <label>หมวดหมู่หนังสือ</label>
+            <select
+              className={styles.categorySelect}
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">-- เลือกหมวดหมู่ --</option>
+              <option value="นิยาย">นิยาย</option>
+              <option value="สารคดี">สารคดี</option>
+              <option value="ธุรกิจและการเงิน">ธุรกิจและการเงิน</option>
+              <option value="พัฒนาตนเอง">พัฒนาตนเอง</option>
+              <option value="การศึกษา / ตำราเรียน">การศึกษา / ตำราเรียน</option>
+              <option value="การ์ตูนและนิยายภาพ">การ์ตูนและนิยายภาพ</option>
+              <option value="ไลฟ์สไตล์">ไลฟ์สไตล์</option>
+              <option value="เทคโนโลยี">เทคโนโลยี</option>
+              <option value="ศิลปะและการออกแบบ">ศิลปะและการออกแบบ</option>
+              <option value="เด็กและเยาวชน">เด็กและเยาวชน</option>
+            </select>
+          </div>
         <div className={styles.formGroup}> 
           <label>วันที่วางจำหน่าย</label>
           <input type="date" value={releaseDate} onChange={(e) => setReleaseDate(e.target.value)} /> 

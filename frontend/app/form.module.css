@@ -3,7 +3,7 @@
 /* พื้นที่ฟอร์มโดยรวม */
 .formContainer {
   max-width: 480px;
-  margin: 40px auto;
+  margin: 10px auto;
   background-color: #ffffff;
   border: 1px solid #d1d5db; /* เทาอ่อน */
   border-radius: 12px;
@@ -48,6 +48,36 @@
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
+/* ---- 🔥 สไตล์ select หมวดหมู่ (เพิ่มใหม่) ---- */
+
+.categorySelect {
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-size: 15px;
+  font-weight: 500;
+  color: #374151;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+
+.categorySelect:hover {
+  background-color: #f3f4f6;
+}
+
+.categorySelect:focus {
+  border-color: #3b82f6;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
+}
+
+.categorySelect option {
+  padding: 10px;
+  font-size: 15px;
+}
+
 /* ปุ่ม */
 .formButton {
   width: 100%;
@@ -64,5 +94,3 @@
 .formButton:hover {
   background-color: #15803d;
 }
-
-

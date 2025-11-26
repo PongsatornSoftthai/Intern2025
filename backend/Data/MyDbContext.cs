@@ -58,6 +58,10 @@ public partial class MyDbContext : DbContext
                 .HasColumnType("decimal(10, 2)")
                 .HasColumnName("nPrice");
             entity.Property(e => e.NQuantity).HasColumnName("nQuantity");
+            entity.Property(e => e.SCategory)
+                .HasMaxLength(255)
+                .IsUnicode(false)
+                .HasColumnName("sCategory");
             entity.Property(e => e.SNamebook)
                 .HasMaxLength(255)
                 .IsUnicode(false)

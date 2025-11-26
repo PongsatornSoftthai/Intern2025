@@ -118,7 +118,7 @@ export default function ChartPage() {
   return (
     <div>
       <h2 className={style.chartTitle}>
-        กราฟจำนวนหนังสือ (Bar Chart)
+        กราฟหมวดหมู่หนังสือ (Treemap Chart)
       </h2>
 
       <div

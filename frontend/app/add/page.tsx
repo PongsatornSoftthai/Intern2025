@@ -8,6 +8,7 @@ export default function AddPage() {
   const [price, setPrice] = useState<number | "">("");
   const [quantity, setQuantity] = useState<number | "">("");
   const [author, setAuthor] = useState("");
+  const [category, setCategory] = useState(""); // เพิ่ม state สำหรับหมวดหมู่
   const [releaseDate, setReleaseDate] = useState("");
   const router = useRouter();
 
@@ -23,7 +24,9 @@ export default function AddPage() {
           nPrice: price === "" ? 0 : price,
           nQuantity: quantity === "" ? 0 : quantity,
           sAuthor: author,
-          dReleaseDate: releaseDate
+          sCategory: category,
+          dReleaseDate: releaseDate,
+          
         })
       });
 
@@ -41,7 +44,6 @@ export default function AddPage() {
     <div className={style.formContainer}>
       <h2 className={style.formTitle}>เพิ่มหนังสือใหม่</h2>
 
-      {/* เพิ่มการ์ด wrapper ให้เด่นขึ้น โดยไม่แตะ CSS */}
       <div className={style.formCard}>
         <form onSubmit={handleSubmit}>
           <div className={style.formGroup}>
@@ -97,6 +99,29 @@ export default function AddPage() {
             />
           </div>
 
+             {/* เพิ่ม select สำหรับหมวดหมู่ */}
+          <div className={style.formGroup}>
+            <label>หมวดหมู่หนังสือ</label>
+            <select
+              className={style.categorySelect}
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">-- เลือกหมวดหมู่ --</option>
+              <option value="นิยาย">นิยาย</option>
+              <option value="สารคดี">สารคดี</option>
+              <option value="ธุรกิจและการเงิน">ธุรกิจและการเงิน</option>
+              <option value="พัฒนาตนเอง">พัฒนาตนเอง</option>
+              <option value="การศึกษา / ตำราเรียน">การศึกษา / ตำราเรียน</option>
+              <option value="การ์ตูนและนิยายภาพ">การ์ตูนและนิยายภาพ</option>
+              <option value="ไลฟ์สไตล์">ไลฟ์สไตล์</option>
+              <option value="เทคโนโลยี">เทคโนโลยี</option>
+              <option value="ศิลปะและการออกแบบ">ศิลปะและการออกแบบ</option>
+              <option value="เด็กและเยาวชน">เด็กและเยาวชน</option>
+            </select>
+          </div>
+
           <div className={style.formGroup}>
             <label>วันที่วางจำหน่าย</label>
             <input
@@ -106,6 +131,8 @@ export default function AddPage() {
               required
             />
           </div>
+
+          
 
           <button type="submit" className={style.formButton}>
             เพิ่มหนังสือ

@@ -7,6 +7,7 @@
         public decimal nPrice { get; set; }
         public int nQuantity { get; set; }
         public required string sAuthor { get; set; }
+        public required string sCategory { get; set; }
         public DateTime? dReleaseDate { get; set; }
     }
 }

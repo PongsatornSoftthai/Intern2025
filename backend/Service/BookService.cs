@@ -37,6 +37,7 @@ namespace backend2.Service
                             nPrice = b.NPrice,
                             nQuantity = b.NQuantity,
                             sAuthor = a.SAuthorName,
+                            sCategory = b.SCategory,
                             dReleaseDate = b.DRelease
                         }).ToList();
 
@@ -57,6 +58,7 @@ namespace backend2.Service
                             nPrice = b.NPrice,
                             nQuantity = b.NQuantity,
                             sAuthor = a.SAuthorName,
+                            sCategory = b.SCategory,
                             dReleaseDate = b.DRelease
                         }).FirstOrDefault();
 
@@ -72,7 +74,11 @@ namespace backend2.Service
             existingBook.SNamebook = book.sNamebook;
             existingBook.NPrice = book.nPrice;
             existingBook.NQuantity = book.nQuantity;
+            existingBook.SCategory = book.sCategory;
             existingBook.DRelease = book.dReleaseDate;
+
+            // อัปเดตวันที่แก้ไข
+            existingBook.DUpdate = DateTime.Now;
 
             // ถ้าผู้แต่งยังไม่มี ให้สร้างใหม่
             var author = _db.TbAuthor.FirstOrDefault(a => a.SAuthorName == book.sAuthor);
@@ -106,8 +112,10 @@ namespace backend2.Service
                 SNamebook = book.sNamebook,
                 NPrice = book.nPrice,
                 NQuantity = book.nQuantity,
+                SCategory = book.sCategory,
                 DRelease = book.dReleaseDate,
-                NAuthorId = author.NAuthorId
+                NAuthorId = author.NAuthorId,
+                DUpdate = DateTime.Now // บันทึกวันที่สร้าง
             };
 
             _db.TbBook.Add(newBook);

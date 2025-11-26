@@ -11,6 +11,7 @@ interface Item {
   nPrice: number;
   nQuantity: number;
   sAuthor: string;
+  sCategory: string;
   dReleaseDate: string; // ดึงจาก API เป็น string
 }
 
@@ -81,6 +82,7 @@ export default function ListPage() {
               <th>ราคา (บาท)</th>
               <th>จำนวน (เล่ม)</th>
               <th>ผู้แต่ง</th>
+              <th>หมวดหมู่</th>
               <th>วันที่วางจำหน่าย</th>
               <th>การจัดการ</th>
             </tr>
@@ -93,6 +95,7 @@ export default function ListPage() {
                 <td>{item.nPrice.toFixed(2)}</td>
                 <td>{item.nQuantity}</td>
                 <td>{item.sAuthor}</td>
+                <td>{item.sCategory}</td>
                 <td>{new Date(item.dReleaseDate).toLocaleDateString()}</td>
                 <td>
                   <Link
