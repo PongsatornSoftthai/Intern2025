@@ -9,8 +9,14 @@ namespace backend2.Service
         List<TbSubjects> GetSchoolByID(string sSubjectID);
         List<TbTeachers> GetAllTeachers();
         List<TbSubjects> GetAllSubjects();
-        bool AddTeacher(TbTeachers teacher , out string message);
+        bool AddTeacher(TbTeachers teacher, out string message);
         bool AddSubject(TbSubjects subject, out string message);
+        TbSubjects? GetSubject(string sSubjectID, out string message);
+        bool UpdateSubject(string sSubjectID, TbSubjects updated, out string message);
+        TbTeachers? GetTeacher(string sTeacherID, out string message);
+        bool UpdateTeacher(string sTeacherID, TbTeachers updated, out string message);
+        bool DeleteSubject(string sSubjectID, out string message);
+        bool DeleteTeacher(string sTeacherID, out string message);
     }
 
     public class SchoolService : ISchoolService
@@ -40,8 +46,9 @@ namespace backend2.Service
             return subjects;
         }
 
-        public bool AddTeacher(TbTeachers teacher,out string message)
+        public bool AddTeacher(TbTeachers teacher, out string message)
         {
+            //ตรวจสอบว่ามีค่า sTeacherId ไหม
             if (string.IsNullOrEmpty(teacher.STeacherId))
             {
                 message = "โปรดใส่รหัสอาจารย์";
@@ -63,8 +70,11 @@ namespace backend2.Service
                 message = "รหัสวิชานี้มีอาจารย์สอนอยู่แล้ว";
                 return false;
             }
+
+            //เพิ่มข้อมูล
             try
             {
+                // set ให้ IsDeleted = false
                 teacher.IsDeleted = false;
                 _db.TbTeachers.Add(teacher);
                 _db.SaveChanges();
@@ -81,6 +91,7 @@ namespace backend2.Service
 
         public bool AddSubject(TbSubjects subject, out string message)
         {
+            //ตรวจสอบว่า SSubjectId ว่างไหม
             if (string.IsNullOrEmpty(subject.SSubjectId))
             {
                 message = "โปรดใส่รหัสอาจารย์";
@@ -96,6 +107,7 @@ namespace backend2.Service
             }
             try
             {
+                // set ให้ IsDeleted = false
                 subject.IsDeleted = false;
                 _db.TbSubjects.Add(subject);
                 _db.SaveChanges();
@@ -109,5 +121,140 @@ namespace backend2.Service
             }
         }
 
+        //เรียก object วิชา ตาม id return object ตัวเดียว
+        public TbSubjects? GetSubject(string sSubjectID, out string message)
+        {
+            var subject = _db.TbSubjects.FirstOrDefault(s => s.SSubjectId == sSubjectID && !s.IsDeleted);
+            if (subject == null)
+            {
+                message = "ไม่พบรายวิชาที่ตามหา";
+                return null;
+            }
+            else
+            {
+                message = "พบรายวิชาที่ตามหา";
+                return subject;
+            }
+        }
+
+        public bool UpdateSubject(string sSubjectID, TbSubjects updated, out string message)
+        {
+            var subject = GetSubject(sSubjectID, out string msg);
+            if (subject == null)
+            {
+                message = msg;
+                return false;
+            }
+
+            try
+            {
+                subject.SName = updated.SName;
+                subject.NCredit = updated.NCredit;
+                _db.SaveChanges();
+                message = "แก้ไขข้อมูลสำเร็จ";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = "เกิดข้อผิดพลาด: " + ex.Message;
+                return false;
+            }
+        }
+
+        public TbTeachers? GetTeacher(string sTeacherID, out string message)
+        {
+            var teacher = _db.TbTeachers.FirstOrDefault(t => t.STeacherId == sTeacherID && !t.IsDeleted);
+            if (teacher == null)
+            {
+                message = "ไม่พบอาจารย์ที่ตามหา";
+                return null;
+            }
+            else
+            {
+                message = "พบอาจารย์ที่ตามหา";
+                return teacher;
+            }
+        }
+
+        public bool UpdateTeacher(string sTeacherID, TbTeachers updated, out string message)
+        {
+            var teacher = GetTeacher(sTeacherID, out string msg);
+            if (teacher == null)
+            {
+                message = msg;
+                return false;
+            }
+            //รหัสวิชาซ้ำกันไหม เฉพาะอันที่ยังไม่ถูกลบ
+            bool exists_subject = _db.TbTeachers.Any(t => t.SSubjectId == updated.SSubjectId && t.STeacherId != sTeacherID && !t.IsDeleted);
+            if (exists_subject)
+            {
+                message = "รหัสวิชานี้มีอาจารย์สอนอยู่แล้ว";
+                return false;
+            }
+            try
+            {
+                teacher.SFirstName = updated.SFirstName;
+                teacher.SLastName = updated.SLastName;
+                teacher.SGender = updated.SGender;
+                teacher.DBirthDate = updated.DBirthDate;
+                teacher.SAddress = updated.SAddress;
+                teacher.SPhoneNumber = updated.SPhoneNumber;
+                teacher.SSubjectId = updated.SSubjectId;
+                _db.SaveChanges();
+                message = "แก้ไขข้อมูลสำเร็จ";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = "เกิดข้อผิดพลาด: " + ex.Message;
+                return false;
+            }
+        }
+
+        public bool DeleteSubject(string sSubjectID, out string message)
+        {
+            var subject = GetSubject(sSubjectID, out string msg);
+            if (subject == null)
+            {
+                message = "ไม่พบรายวิชานี้";
+                return false;
+            }
+
+            try
+            {
+                subject.IsDeleted = true;
+                _db.SaveChanges();
+                message = "ลบข้อมูลสำเร็จ";
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = "เกิดข้อผิดพลาด: " + ex.Message;
+                return false;
+            }
+        }
+
+        public bool DeleteTeacher(string sTeacherID, out string message)
+        {
+            var teacher = GetTeacher(sTeacherID, out string msg);
+            if (teacher == null)
+            {
+                message = "ไม่พบาอาจารย์ท่านนี้";
+                return false;
+            }
+
+            try
+            {
+                teacher.IsDeleted = true;
+                _db.SaveChanges();
+                message = "ลบข้อมูลสำเร็จ";
+                return false;
+            }
+            catch (Exception ex)
+            {
+                message = "เกิดข้อผิดพลาด: " + ex.Message;
+                return true;
+            }
+        }
     }
 }

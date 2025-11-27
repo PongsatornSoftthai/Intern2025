@@ -37,6 +37,23 @@ export default function GetTeachers() {
         fetchTeachers();
     }, []);
 
+    const handleDelete = async (id: string) => {
+        if (!confirm("คุณต้องการลบข้อมูลวิชานี้ใช่หรือไม่?"))
+            return;
+        try {
+            const res = await fetch(`https://localhost:7127/api/School/DeleteTeacher/${id}`, {
+                method: "DELETE",
+            });
+
+            const result = await res.json();
+            alert(result.message);
+
+            setLstTeachers(prev => prev.filter(s => s.sTeacherId !== id));
+        } catch {
+            alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+        }
+    };
+
     return (
         <div className={styles.container}>
             <section>
@@ -78,9 +95,13 @@ export default function GetTeachers() {
                                                 <Link href={`/editTeacher/${T.sTeacherId}`} className={styles.editButton}>
                                                     <MdEdit /> {/* ขนาด 20px */}
                                                 </Link>
-                                                <Link href={`/deleteTeacher/${T.sTeacherId}`} className={styles.deleteButton} >
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleDelete(T.sTeacherId)}
+                                                    className={styles.deleteButton}
+                                                >
                                                     <MdDelete /> {/* ขนาด 20px */}
-                                                </Link>
+                                                </button>
                                             </div>
                                         </td>
                                     </tr>

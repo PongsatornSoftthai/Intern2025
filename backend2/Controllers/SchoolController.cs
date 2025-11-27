@@ -59,7 +59,7 @@ namespace backend2.Controllers
         [HttpPost]
         public IActionResult AddTeacher([FromBody] TbTeachers teacher)
         {
-            if (_schoolService.AddTeacher(teacher,out string msg))
+            if (_schoolService.AddTeacher(teacher, out string msg))
             {
                 return Ok(new { message = msg });
             }
@@ -82,5 +82,88 @@ namespace backend2.Controllers
             }
         }
 
+        [HttpGet("{sSubjectID}")]
+        public IActionResult GetSubject(string sSubjectID)
+        {
+            var subject = _schoolService.GetSubject(sSubjectID, out string msg);
+            if (subject == null)
+            {
+                return Ok(new { message = msg });
+            }
+            else
+            {
+                return Ok(subject);
+            }
+        }
+        [HttpPut("{sSubjectID}")]
+        public IActionResult UpdateSubject(string sSubjectID, [FromBody] TbSubjects updated)
+        {
+            bool success = _schoolService.UpdateSubject(sSubjectID, updated, out string msg);
+            if (success)
+            {
+                return Ok(new { message = msg });
+            }
+            else
+            {
+                return BadRequest(new { message = msg });
+            }
+        }
+
+        [HttpGet("{sTeacherID}")]
+        public IActionResult GetTeacher(string sTeacherID)
+        {
+            var teacher = _schoolService.GetTeacher(sTeacherID, out string msg);
+            if (teacher == null)
+            {
+                return Ok(new { message = msg });
+            }
+            else
+            {
+                return Ok(teacher);
+            }
+        }
+        [HttpPut("{sTeacherID}")]
+        public IActionResult UpdateTeacher(string sTeacherID, [FromBody] TbTeachers updated)
+        {
+            bool success = _schoolService.UpdateTeacher(sTeacherID, updated, out string msg);
+            if (success)
+            {
+                return Ok(new { message = msg });
+            }
+            else
+            {
+                return BadRequest(new { message = msg });
+            }
+        }
+
+        [HttpDelete("{sSubjectID}")]
+        public IActionResult DeleteSubject(string sSubjectID)
+        {
+            bool success = _schoolService.DeleteSubject(sSubjectID, out string msg);
+
+            if (!success)
+            {
+                return BadRequest(new { message = msg });
+            }
+            else
+            {
+                return Ok(new { message = msg });
+            }
+        }
+
+        [HttpDelete("{sTeacherID}")]
+        public IActionResult DeleteTeacher(string sTeacherID)
+        {
+            bool success = _schoolService.DeleteTeacher(sTeacherID, out string msg);
+
+            if (!success)
+            {
+                return BadRequest(new { message = msg });
+            }
+            else
+            {
+                return Ok(new { message = msg });
+            }
+        }
     }
 }

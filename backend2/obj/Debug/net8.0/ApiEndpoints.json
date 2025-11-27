@@ -33,6 +33,38 @@
   },
   {
     "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "DeleteSubject",
+    "RelativePath": "api/School/DeleteSubject/{sSubjectID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sSubjectID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "DeleteTeacher",
+    "RelativePath": "api/School/DeleteTeacher/{sTeacherID}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sTeacherID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
     "Method": "GetAllSubjects",
     "RelativePath": "api/School/GetAllSubjects",
     "HttpMethod": "GET",
@@ -63,6 +95,80 @@
         "Name": "sSchoolID",
         "Type": "System.String",
         "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "GetSubject",
+    "RelativePath": "api/School/GetSubject/{sSubjectID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sSubjectID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "GetTeacher",
+    "RelativePath": "api/School/GetTeacher/{sTeacherID}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sTeacherID",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "UpdateSubject",
+    "RelativePath": "api/School/UpdateSubject/{sSubjectID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sSubjectID",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "backend2.Models.TbSubjects",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.SchoolController",
+    "Method": "UpdateTeacher",
+    "RelativePath": "api/School/UpdateTeacher/{sTeacherID}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sTeacherID",
+        "Type": "System.String",
+        "IsRequired": true
+      },
+      {
+        "Name": "updated",
+        "Type": "backend2.Models.TbTeachers",
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []

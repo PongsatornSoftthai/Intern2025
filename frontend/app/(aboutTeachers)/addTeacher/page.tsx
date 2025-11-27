@@ -72,7 +72,7 @@ export default function AddTeacher() {
         try {//ส่งข้อมูลไป API
             const res = await fetch("https://localhost:7127/api/School/AddTeacher", {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json" }, //บอกว่า่ข้อมูลที่ส่งไปเป็น json
                 body: JSON.stringify(formData),
             });
 
@@ -81,7 +81,7 @@ export default function AddTeacher() {
             if (!res.ok) {
                 alert(result.message);
             } else {
-                alert("ผิดพลาด: " + result.message);
+                alert(result.message);
             }
 
             //เคลียร์ฟอร์ม
@@ -96,12 +96,11 @@ export default function AddTeacher() {
                 sSubjectId: "",
             });
         } catch (err) {
-            console.error(err);
             alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
         }
 
-    }
-
+    };
+    
     return (
         <div>
             <div className={styles.container}>

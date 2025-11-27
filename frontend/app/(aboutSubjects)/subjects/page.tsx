@@ -32,6 +32,24 @@ export default function GetSubjects() {
     fetchSubjects();
   }, []);
 
+  const handleDelete = async (id: string) => {
+    if (!confirm("คุณต้องการลบข้อมูลวิชานี้ใช่หรือไม่?"))
+      return;
+
+    try {
+      const res = await fetch(`https://localhost:7127/api/School/DeleteSubject/${id}`, {
+        method: "DELETE",
+      });
+
+      const result = await res.json();
+      alert(result.message);
+
+      setLstSubjects(prev => prev.filter(s => s.sSubjectId !== id));
+    } catch {
+      alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+    }
+  };
+
 
   return (
     <div className={styles.container}>
@@ -64,9 +82,13 @@ export default function GetSubjects() {
                         <Link href={`/editSubject/${sub.sSubjectId}`} className={styles.editButton}>
                           <MdEdit /> {/* ขนาด 20px */}
                         </Link>
-                        <Link href={`/deleteSubject/${sub.sSubjectId}`} className={styles.deleteButton}>
+                        <button
+                          type="button"
+                          onClick={() => handleDelete(sub.sSubjectId)}
+                          className={styles.deleteButton}
+                        >
                           <MdDelete /> {/* ขนาด 20px */}
-                        </Link>
+                        </button>
                       </div>
                     </td>
                   </tr>

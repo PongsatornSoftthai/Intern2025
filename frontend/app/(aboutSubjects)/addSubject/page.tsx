@@ -3,24 +3,22 @@ import React, { useState } from "react";
 import styles from "../../css/addForm.module.css";
 
 interface IFormData {
-    sSubId: string;
-    sSubName: string;
-    nSubCredit: number;
-    sFacName: string;
+    sSubjectId: string;
+    sName: string;
+    nCredit: number;
 }
 
 export default function AddSubject() {
 
     const [formData, setFormData] = useState<IFormData>({
-        sSubId: "",
-        sSubName: "",
-        nSubCredit: 0,
-        sFacName: "",
+        sSubjectId: "",
+        sName: "",
+        nCredit: 0,
     });
 
     const [subjects, setSubjects] = useState<IFormData[]>([]);
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
@@ -30,24 +28,51 @@ export default function AddSubject() {
         }));
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        if (!formData.sSubId || !formData.sSubName || !formData.nSubCredit||!formData.sFacName) {
+        if (!formData.sSubjectId || !formData.sName || !formData.nCredit) {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน")
             return;
         }
 
-        setSubjects((prev) =>
-            [...prev, formData].sort((a, b) => a.sSubId.localeCompare(b.sSubId))
-        );
+        // รหัสวิชาแบบ 3 ตัวเลข - 3 ตัวเลข
+        const subjectRegex = /^[0-9]{3}-[0-9]{3}$/;
 
-        setFormData({ sSubId: "", sSubName: "", nSubCredit: 0,sFacName:"" });
+        if (!subjectRegex.test(formData.sSubjectId)) {
+            alert("รหัสวิชาต้องอยู่ในรูปแบบ 001-102");
+            return;
+        }
+
+        try {
+            const res = await fetch("https://localhost:7127/api/School/AddSubject", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" }, //บอกว่า่ข้อมูลที่ส่งไปเป็น json
+                body: JSON.stringify(formData),
+            });
+
+            const result = await res.json();
+
+            if (!res.ok) {
+                alert(result.message);
+            } else {
+                alert(result.message);
+            }
+
+            //เคลียร์ฟอร์ม
+            setFormData({
+                sSubjectId: "",
+                sName: "",
+                nCredit: 0,
+            });
+        } catch (err) {
+            alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
+        }
     };
 
     return (
         <div >
-            <div  className={styles.container}>
+            <div className={styles.container}>
                 <h2 className={styles.title}>
                     เพิ่มรายวิชา
                 </h2>
@@ -56,8 +81,8 @@ export default function AddSubject() {
                         <label >รหัสวิชา: </label>
                         <input
                             type="text"
-                            name="sSubId"
-                            value={formData.sSubId}
+                            name="sSubjectId"
+                            value={formData.sSubjectId}
                             onChange={handleChange}
                             className={styles.input}
                         />
@@ -66,8 +91,8 @@ export default function AddSubject() {
                         <label >ชื่อวิชา: </label>
                         <input
                             type="text"
-                            name="sSubName"
-                            value={formData.sSubName}
+                            name="sName"
+                            value={formData.sName}
                             onChange={handleChange}
                             className={styles.input}
                         />
@@ -76,54 +101,15 @@ export default function AddSubject() {
                         <label >หน่วยกิต: </label>
                         <input
                             type="text"
-                            name="nSubCredit"
-                            value={formData.nSubCredit}
+                            name="nCredit"
+                            value={formData.nCredit}
                             onChange={handleChange}
                             className={styles.input}
+                            pattern="\d*" //อนุญาตเฉพาะตัวเลข 0-9
                         />
-                    </div>
-                    <div>
-                        <label >สังกัดคณะ: </label>
-                        <select
-                            name="sFacName"
-                            value={formData.sFacName}
-                            onChange={handleChange}
-                            className={styles.input}
-                            
-                        >
-                            <option value="วิทยาศาสตร์และเทคโนโลยี">วิทยาศาสตร์และเทคโนโลยี</option>
-                            <option value="ศึกษาศาสตร์">ศึกษาศาสตร์</option>
-                            <option value="รัฐศาสตร์">รัฐศาสตร์</option>
-                        </select>
                     </div>
                     <button type="submit" className={styles.button}>เพิ่มรายวิชา</button>
                 </form>
-            </div>
-
-            <div  className={styles.container}>
-                <h3>รายการวิชา</h3>
-                <table className={styles.table}>
-                    <thead>
-                        <tr>
-                            <th>ลำดับ</th>
-                            <th>รหัสวิชา</th>
-                            <th>ชื่อวิชา</th>
-                            <th>หน่วยกิต</th>
-                            <th>สังกัดคณะ</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {subjects.map((sub, index) => (
-                            <tr key={sub.sSubId}>
-                                <td>{index + 1}</td>
-                                <td>{sub.sSubId}</td>
-                                <td>{sub.sSubName}</td>
-                                <td>{sub.nSubCredit}</td>
-                                <td>{sub.sFacName}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
             </div>
         </div>
     );
