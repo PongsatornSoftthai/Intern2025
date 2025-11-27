@@ -22,4 +22,10 @@ public partial class TbTeachers
     public bool IsDeleted { get; set; }
 
     public string? SSubjectId { get; set; }
+
+    public DateTime? DUpdate { get; set; }
+
+    public DateTime? DDelete { get; set; }
+
+    public string? SFaculty { get; set; }
 }

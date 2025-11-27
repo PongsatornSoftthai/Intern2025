@@ -1,6 +1,7 @@
 'use client'
 import React, { useState } from "react";
-import styles from "../../css/addForm.module.css";;
+import styles from "../../css/addForm.module.css";
+import { useRouter } from "next/navigation";
 
 interface IFormData {
     sTeacherId: string;
@@ -11,10 +12,12 @@ interface IFormData {
     sAddress: string;
     sPhoneNumber: string;
     sSubjectId: string;
+    sFaculty: string;
 }
 
 export default function AddTeacher() {
 
+    const router = useRouter();
     const [formData, setFormData] = useState<IFormData>({
         sTeacherId: "",
         sFirstName: "",
@@ -24,6 +27,7 @@ export default function AddTeacher() {
         sAddress: "",
         sPhoneNumber: "",
         sSubjectId: "",
+        sFaculty:"",
     });
 
     const [teachers, setTeachers] = useState<IFormData[]>([]);
@@ -40,7 +44,7 @@ export default function AddTeacher() {
         e.preventDefault();
 
         //เช็คว่ามีค่าบ้าง
-        if (!formData.sTeacherId || !formData.sFirstName || !formData.sLastName || !formData.sGender || !formData.dBirthDate || !formData.sAddress || !formData.sPhoneNumber || !formData.sSubjectId) {
+        if (!formData.sTeacherId || !formData.sFirstName || !formData.sLastName || !formData.sGender || !formData.dBirthDate || !formData.sAddress || !formData.sPhoneNumber ||!formData.sFaculty|| !formData.sSubjectId) {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน");
             return;
         }
@@ -93,8 +97,11 @@ export default function AddTeacher() {
                 dBirthDate: "",// เก็บเป็น string จาก backend
                 sAddress: "",
                 sPhoneNumber: "",
+                sFaculty:"",
                 sSubjectId: "",
             });
+
+            router.push("/teachers");
         } catch (err) {
             alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
         }
@@ -182,6 +189,21 @@ export default function AddTeacher() {
                             maxLength={10}
                             pattern="\d{10}"
                         />
+                    </div>
+                    <div>
+                        <label >สังกัดคณะ: </label>
+                        <select
+                            name="sFaculty"
+                            value={formData.sFaculty}
+                            onChange={handleChange}
+                            className={styles.input}
+                        >
+                            <option value="">--เลือกคณะ--</option>
+                            <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
+                            <option value="ศึกษาศาสตร์">ศึกษาศาสตร์</option>
+                            <option value="รัฐศาสตร์">รัฐศาสตร์</option>
+                            <option value="สาธารณสุข">สาธารณสุข</option>
+                        </select>
                     </div>
                     <div>
                         <label >รหัสวิชาที่สอน: </label>

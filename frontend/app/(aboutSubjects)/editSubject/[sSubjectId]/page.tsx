@@ -56,7 +56,6 @@ export default function EditSubject() {
       alert("กรุณากรอกข้อมูลให้ครบ");
       return;
     }
-
     try {
       const res = await fetch(`https://localhost:7127/api/School/UpdateSubject/${params.sSubjectId}`, {
         method: "PUT",
@@ -64,7 +63,7 @@ export default function EditSubject() {
         body: JSON.stringify({
           SSubjectId:formData.sSubjectId,
           SName: formData.sName,
-          NCredit: formData.nCredit
+          NCredit: formData.nCredit,
         })
       });
 

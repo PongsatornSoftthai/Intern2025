@@ -275,3 +275,4 @@ D:\สหกิจศึกษา\project\Intern2025\backend2\obj\Debug\net8.0\r
 D:\สหกิจศึกษา\project\Intern2025\backend2\obj\Debug\net8.0\backend2.pdb
 D:\สหกิจศึกษา\project\Intern2025\backend2\obj\Debug\net8.0\backend2.genruntimeconfig.cache
 D:\สหกิจศึกษา\project\Intern2025\backend2\obj\Debug\net8.0\ref\backend2.dll
+D:\สหกิจศึกษา\project\Intern2025\backend2\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt

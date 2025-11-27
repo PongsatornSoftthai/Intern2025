@@ -1,6 +1,7 @@
 'use client'
-import React, { useState } from "react";
 import styles from "../../css/addForm.module.css";
+import { useState, useEffect, use } from "react";
+import {useRouter } from "next/navigation";
 
 interface IFormData {
     sSubjectId: string;
@@ -10,6 +11,7 @@ interface IFormData {
 
 export default function AddSubject() {
 
+    const router = useRouter();
     const [formData, setFormData] = useState<IFormData>({
         sSubjectId: "",
         sName: "",
@@ -65,6 +67,9 @@ export default function AddSubject() {
                 sName: "",
                 nCredit: 0,
             });
+
+            router.push("/subjects");
+
         } catch (err) {
             alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
         }

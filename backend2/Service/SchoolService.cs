@@ -76,6 +76,7 @@ namespace backend2.Service
             {
                 // set ให้ IsDeleted = false
                 teacher.IsDeleted = false;
+                teacher.DUpdate = DateTime.Now;
                 _db.TbTeachers.Add(teacher);
                 _db.SaveChanges();
 
@@ -109,6 +110,7 @@ namespace backend2.Service
             {
                 // set ให้ IsDeleted = false
                 subject.IsDeleted = false;
+                subject.DUpdate = DateTime.Now;
                 _db.TbSubjects.Add(subject);
                 _db.SaveChanges();
                 message = "เพิ่มข้อมูลสำเร็จ";
@@ -150,6 +152,7 @@ namespace backend2.Service
             {
                 subject.SName = updated.SName;
                 subject.NCredit = updated.NCredit;
+                subject.DUpdate = DateTime.Now;
                 _db.SaveChanges();
                 message = "แก้ไขข้อมูลสำเร็จ";
                 return true;
@@ -200,6 +203,7 @@ namespace backend2.Service
                 teacher.SAddress = updated.SAddress;
                 teacher.SPhoneNumber = updated.SPhoneNumber;
                 teacher.SSubjectId = updated.SSubjectId;
+                teacher.DUpdate = DateTime.Now;
                 _db.SaveChanges();
                 message = "แก้ไขข้อมูลสำเร็จ";
                 return true;
@@ -223,6 +227,7 @@ namespace backend2.Service
             try
             {
                 subject.IsDeleted = true;
+                subject.DDelete = DateTime.Now;
                 _db.SaveChanges();
                 message = "ลบข้อมูลสำเร็จ";
                 return true;
@@ -246,6 +251,7 @@ namespace backend2.Service
             try
             {
                 teacher.IsDeleted = true;
+                teacher.DDelete = DateTime.Now;
                 _db.SaveChanges();
                 message = "ลบข้อมูลสำเร็จ";
                 return false;

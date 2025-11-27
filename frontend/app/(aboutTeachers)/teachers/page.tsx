@@ -17,6 +17,7 @@ interface ITeacher {
     sPhoneNumber: string;
     isDeleted: boolean;
     sSubjectId: string;
+    sFaculty:string;
 }
 
 export default function GetTeachers() {
@@ -69,6 +70,7 @@ export default function GetTeachers() {
                             <th>วัน/เดือน/ปีเกิด</th>
                             <th>ที่อยู่</th>
                             <th>เบอร์โทร</th>
+                            <th>สังกัดคณะ</th>
                             <th>วิชาที่สอน</th>
                             <th>จัดการ</th>
                         </tr>
@@ -89,6 +91,7 @@ export default function GetTeachers() {
                                         <td>{new Date(T.dBirthDate).toLocaleDateString("th-TH")}</td>
                                         <td>{T.sAddress}</td>
                                         <td>{T.sPhoneNumber}</td>
+                                        <td>{T.sFaculty}</td>
                                         <td>{T.sSubjectId}</td>
                                         <td>
                                             <div className={styles.manageButton}>

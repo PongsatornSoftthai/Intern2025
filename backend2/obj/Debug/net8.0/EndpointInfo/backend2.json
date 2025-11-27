@@ -341,6 +341,16 @@
           "nCredit": {
             "type": "integer",
             "format": "int32"
+          },
+          "dUpdate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dDelete": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -381,6 +391,20 @@
             "type": "boolean"
           },
           "sSubjectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "dUpdate": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "dDelete": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "sFaculty": {
             "type": "string",
             "nullable": true
           }

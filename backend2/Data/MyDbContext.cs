@@ -33,6 +33,12 @@ public partial class MyDbContext : DbContext
                 .HasMaxLength(7)
                 .IsFixedLength()
                 .HasColumnName("sSubjectID");
+            entity.Property(e => e.DDelete)
+                .HasColumnType("datetime")
+                .HasColumnName("dDelete");
+            entity.Property(e => e.DUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("dUpdate");
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
             entity.Property(e => e.NCredit).HasColumnName("nCredit");
             entity.Property(e => e.SName)
@@ -50,8 +56,17 @@ public partial class MyDbContext : DbContext
                 .IsFixedLength()
                 .HasColumnName("sTeacherID");
             entity.Property(e => e.DBirthDate).HasColumnName("dBirthDate");
+            entity.Property(e => e.DDelete)
+                .HasColumnType("datetime")
+                .HasColumnName("dDelete");
+            entity.Property(e => e.DUpdate)
+                .HasColumnType("datetime")
+                .HasColumnName("dUpdate");
             entity.Property(e => e.IsDeleted).HasColumnName("isDeleted");
             entity.Property(e => e.SAddress).HasColumnName("sAddress");
+            entity.Property(e => e.SFaculty)
+                .HasMaxLength(255)
+                .HasColumnName("sFaculty");
             entity.Property(e => e.SFirstName)
                 .HasMaxLength(255)
                 .HasColumnName("sFirstName");
