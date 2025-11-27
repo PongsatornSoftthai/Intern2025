@@ -3,7 +3,8 @@
   width: 100%;
   border: 1px solid black;
   border-collapse: collapse;
-  border-radius: 8px;
+  border-radius: 4px;
+  font-size: 14px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -23,7 +24,7 @@
 /* แถวข้อมูล */
 .table td {
   border: 1px solid black;
-  padding: 8px 16px;
+  padding: 2px 16px;
   text-align: center;
 }
 
@@ -36,7 +37,7 @@
   padding: 8px 12px;
   border-radius: 6px;
   color: white;
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
@@ -55,21 +56,39 @@
 }
 
 /* ปุ่มแก้ไข */
+/* ปุ่มแก้ไข (Edit) แบบทางการ */
 .btnEdit {
-  background-color: #eab308;
-}
-.btnEdit:hover {
-  background-color: #ca8a04;
+  background-color: #d8bf1d; /* น้ำเงินเข้ม */
+  color: white;
+  border: 1px solid #af8b1e;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  transition: background-color 0.2s, border-color 0.2s;
 }
 
-/* ปุ่มลบ */
+.btnEdit:hover {
+  background-color: #afa01e; /* น้ำเงินเข้มขึ้นเมื่อ hover */
+  border-color: #8a6d1e;
+}
+
+/* ปุ่มลบ (Delete) แบบทางการ */
 .btnDelete {
-  background-color: #dc5b4d;
+  background-color: #b91c1c; /* แดงเข้ม */
+  color: white;
+  border: 1px solid #7f1d1d;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 13px;
+  transition: background-color 0.2s, border-color 0.2s;
   margin-left: 6px;
 }
+
 .btnDelete:hover {
-  background-color: #c0392b;
+  background-color: #7f1d1d; /* แดงเข้มขึ้นเมื่อ hover */
+  border-color: #5c1616;
 }
+
 
 /* ส่วนหัว */
 .headerTitle {
@@ -83,4 +102,38 @@
   font-size: 1rem;
   font-weight: bold;
   color: #000;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.pageBtn {
+  background-color: #f0f0f0;
+  color: #333;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+
+.pageBtn:hover:not(:disabled) {
+  background-color: #e0e0e0;
+}
+
+.pageBtn:disabled {
+  color: #999;
+  cursor: not-allowed;
+}
+
+.activePage {
+  background-color: #2563eb; /* สีน้ำเงินเข้ม */
+  color: white;
+  border-color: #2563eb;
 }

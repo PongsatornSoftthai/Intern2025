@@ -1,131 +1,125 @@
 "use client";
 
 import * as am5 from "@amcharts/amcharts5";
-import * as am5xy from "@amcharts/amcharts5/xy";
+import * as am5hierarchy from "@amcharts/amcharts5/hierarchy";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
-import { useEffect, useRef } from "react";
-import style from "./chart.module.css"; 
+import { useEffect, useRef, useState } from "react";
+import style from "./chart.module.css";
 
-interface Item {
-  sID: string;
-  nNo: number;
-  sName: string;
-  nPrice: number;
+interface ChartBook {
+  sNamebook: string;
   nQuantity: number;
-  sAuthor: string;
-  dReleaseDate: Date;
+  sCategory: string;
 }
 
 export default function ChartPage() {
   const chartRef = useRef<HTMLDivElement>(null);
+  const [data, setData] = useState<ChartBook[]>([]);
 
-  const items: Item[] = [
-    { sID: "1", nNo: 1, sName: "เจ้าชายน้อย", nPrice: 199, nQuantity: 12, sAuthor: "Antoine", dReleaseDate: new Date("2022-02-11") },
-    { sID: "2", nNo: 2, sName: "ปีศาจตัวนั้น คือฉันเอง", nPrice: 360, nQuantity: 9, sAuthor: "MAY-I", dReleaseDate: new Date("2025-09-25") },
-    { sID: "3", nNo: 3, sName: "ใครรู้ คนนั้นรอด", nPrice: 225, nQuantity: 99, sAuthor: "ดร.ตฤณห์", dReleaseDate: new Date("2024-09-17") },
-    { sID: "4", nNo: 4, sName: "จดหมายจากดาวแมว", nPrice: 209, nQuantity: 365, sAuthor: "นทธี", dReleaseDate: new Date("2025-07-15") },
-    { sID: "5", nNo: 5, sName: "จิตวิทยาสายดาร์ก", nPrice: 250, nQuantity: 63, sAuthor: "Dr. Hiro", dReleaseDate: new Date("2024-10-25") }
-  ];
+  // โหลดข้อมูลจาก API
+  useEffect(() => {
+    fetch("https://localhost:7073/api/Book/GetBooksForChart/chart")
+      .then((res) => res.json())
+      .then((json) => setData(json))
+      .catch((err) => console.error(err));
+  }, []);
+
+  // สีของแต่ละหมวด (ตรง ๆ ไม่ normalize)
+  const categoryColors: Record<string, string> = {
+    "นิยาย": "#f44336",
+    "สารคดี": "#2196f3",
+    "ธุรกิจและการเงิน": "#4caf50",
+    "พัฒนาตนเอง": "#ff9800",
+    "การศึกษา / ตำราเรียน": "#9c27b0",
+    "การ์ตูนและนิยายภาพ": "#00bcd4",
+    "ไลฟ์สไตล์": "#e91e63",
+    "เทคโนโลยี": "#3f51b5",
+    "ศิลปะและการออกแบบ": "#795548",
+    "เด็กและเยาวชน": "#607d8b",
+  };
 
   useEffect(() => {
-    if (!chartRef.current) return;
+    if (!chartRef.current || data.length === 0) return;
 
     const root = am5.Root.new(chartRef.current);
-
     root.setThemes([am5themes_Animated.new(root)]);
 
-    // Chart container
+    // รวมข้อมูลตามหมวด
+    const grouped = data.reduce((acc, item) => {
+      const cat = item.sCategory;
+      if (!acc[cat]) acc[cat] = [];
+      acc[cat].push(item);
+      return acc;
+    }, {} as Record<string, ChartBook[]>);
+
+    // สร้าง treeData
+    const treeData = [
+      {
+        name: "หนังสือทั้งหมด",
+        category: "root",
+        children: Object.keys(grouped).map((cat) => ({
+          name: cat,
+          category: cat,
+          children: grouped[cat].map((b) => ({
+            name: b.sNamebook,
+            value: b.nQuantity,
+            category: cat,
+          })),
+        })),
+      },
+    ];
+
     const chart = root.container.children.push(
-      am5xy.XYChart.new(root, {
-        layout: root.verticalLayout,
-        panX: false,
-        panY: false,
-        wheelX: "none",
-        wheelY: "none"
-      })
-    );
-
-    // Prepare data
-    const data = items.map((item) => ({
-      name: item.sName,
-      quantity: item.nQuantity,
-    }));
-
-    // X Axis (Book Names)
-    const xAxis = chart.xAxes.push(
-      am5xy.CategoryAxis.new(root, {
+      am5hierarchy.Treemap.new(root, {
+        valueField: "value",
         categoryField: "name",
-        renderer: am5xy.AxisRendererX.new(root, {
-          minGridDistance: 40,
-        }),
-      })
-    );
-    xAxis.data.setAll(data);
-
-    // Y Axis
-    const yAxis = chart.yAxes.push(
-      am5xy.ValueAxis.new(root, {
-        renderer: am5xy.AxisRendererY.new(root, {})
+        childDataField: "children",
+        downDepth: 2,
+        upDepth: 1,
+        initialDepth: 2,
       })
     );
 
-    // Column Series
-    const series = chart.series.push(
-      am5xy.ColumnSeries.new(root, {
-        name: "Quantity",
-        xAxis: xAxis,
-        yAxis: yAxis,
-        valueYField: "quantity",
-        categoryXField: "name",
-        tooltip: am5.Tooltip.new(root, {
-          labelText: "{categoryX}: {valueY}"
-        }),
+    chart.data.setAll(treeData);
+
+    // Tooltip
+    chart.set(
+      "tooltip",
+      am5.Tooltip.new(root, {
+        labelText: "{name}\nจำนวน: {value}",
       })
     );
 
-    // Style for each column
-    series.columns.template.setAll({
-      cornerRadiusTL: 8,
-      cornerRadiusTR: 8,
-      strokeOpacity: 0,
+    // ใช้สีตาม category
+    (chart.rectangles.template as any).setAll({
+      getFillFromParent: false,
     });
 
-    // ⭐ Event คลิกที่แท่งกราฟ (แก้ไขแล้ว)
-    series.columns.template.events.on("click", (ev) => {
-      const dataItem = ev.target.dataItem;
+    chart.rectangles.template.adapters.add("fill", (fill, target) => {
+      const item: any = target.dataItem?.dataContext;
+      if (item?.category && categoryColors[item.category]) {
+        return am5.color(categoryColors[item.category]);
+      }
+      return fill;
+    });
 
-      if (dataItem) {
-        const ctx: any = dataItem.dataContext;
-
-        const bookName = ctx.name;
-        const qty = ctx.quantity;
-
-        alert(`📘 ${bookName}\nจำนวนคงเหลือ: ${qty} เล่ม`);
+    // คลิกแต่ละกล่อง
+    chart.rectangles.template.events.on("click", (ev) => {
+      const item: any = ev.target.dataItem?.dataContext;
+      if (item) {
+        alert(`📘 ${item.name}\nหมวดหมู่: ${item.category}\nจำนวน: ${item.value}`);
       }
     });
 
-    series.data.setAll(data);
-
-    // Animations
-    series.appear(1000);
     chart.appear(1000, 100);
 
-    return () => {
-      root.dispose();
-    };
-  }, []);
+    return () => root.dispose();
+  }, [data]);
 
   return (
     <div>
-      <h2 className={style.chartTitle}>
-        กราฟหมวดหมู่หนังสือ (Treemap Chart)
-      </h2>
-
-      <div
-        ref={chartRef}
-        className={style.chartContainer}
-      ></div>
-
+      <h2 className={style.chartTitle}>Treemap: จำนวนหนังสือตามหมวดหมู่</h2>
+      <div ref={chartRef} className={style.chartContainer}></div>
     </div>
   );
 }

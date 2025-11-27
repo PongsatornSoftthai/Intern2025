@@ -17,6 +17,22 @@
   },
   {
     "ContainingType": "backend2.Controllers.BookController",
+    "Method": "DeleteBook",
+    "RelativePath": "api/Book/DeleteBook/DeleteBook/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.BookController",
     "Method": "GetAllBooks",
     "RelativePath": "api/Book/GetAllBooks",
     "HttpMethod": "GET",
@@ -43,17 +59,22 @@
   },
   {
     "ContainingType": "backend2.Controllers.BookController",
+    "Method": "GetBooksForChart",
+    "RelativePath": "api/Book/GetBooksForChart/chart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "backend2.Controllers.BookController",
     "Method": "UpdateBook",
     "RelativePath": "api/Book/UpdateBook",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
     "Parameters": [
-      {
-        "Name": "nBookID",
-        "Type": "System.Int32",
-        "IsRequired": false
-      },
       {
         "Name": "bookDto",
         "Type": "backend2.Model.BookDto",

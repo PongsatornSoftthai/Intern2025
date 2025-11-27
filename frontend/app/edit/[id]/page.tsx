@@ -28,7 +28,7 @@ export default function EditPage() {
     async function fetchBook() {
       try {
         console.log("Fetching book ID:", params.id);
-        const res = await fetch(`http://localhost:5256/api/Book/GetBook?nBookID=${params.id}`);
+        const res = await fetch(`https://localhost:7073/api/Book/GetBook?nBookID=${params.id}`);
         if (!res.ok) throw new Error("Failed to fetch book"); 
         const data: Book = await res.json(); 
         
@@ -52,7 +52,7 @@ export default function EditPage() {
     e.preventDefault();
     try {
       const res = await 
-     fetch("http://localhost:5256/api/Book/UpdateBook", {
+     fetch("https://localhost:7073/api/Book/UpdateBook", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ 

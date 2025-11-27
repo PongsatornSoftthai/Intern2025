@@ -12,6 +12,7 @@ namespace backend2.Service
         bool UpdateBook(BookDto book);
         bool AddBook(BookDto book);
         bool SoftDeleteBook(int id);
+        List<object> GetBooksForChart();
     }
 
     public class BookService : IBookService
@@ -134,6 +135,22 @@ namespace backend2.Service
             _db.SaveChanges();
             return true;
         }
+        public List<object> GetBooksForChart()
+        {
+            var data = (from b in _db.TbBook
+                        where b.IsDelete == false
+                        select new
+                        {
+                            sNamebook = b.SNamebook,
+                            nQuantity = b.NQuantity,
+                            sCategory = b.SCategory
+                        }).ToList<object>();
+
+            return data;
+        }
+
+
+
 
     }
 }

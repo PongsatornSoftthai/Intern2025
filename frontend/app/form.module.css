@@ -1,64 +1,56 @@
-/* form.css */
-
-/* พื้นที่ฟอร์มโดยรวม */
-.formContainer {
-  max-width: 480px;
-  margin: 10px auto;
-  background-color: #ffffff;
-  border: 1px solid #d1d5db; /* เทาอ่อน */
-  border-radius: 12px;
-  padding: 24px 28px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+/* ใช้ .content เป็น container ของฟอร์ม */
+.content {
+  display: flex;
+  flex-wrap: wrap;      /* ให้ input ต่อแถวใหม่เมื่อหน้าจอเล็ก */
+  gap: 16px;            /* ลด spacing ระหว่าง input ให้กระชับขึ้น */
+  padding: 16px;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f4f6ff;
+  justify-content: center; /* ทำให้แถว input อยู่กลาง container */
 }
 
-/* หัวข้อฟอร์ม */
-.formTitle {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #1f2937;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-
-/* กล่องของแต่ละ input */
+/* กลุ่ม input */
 .formGroup {
+  flex: 1 1 50%;       /* กว้างประมาณ 40% ของ container → 2 ช่องต่อแถว */
   display: flex;
   flex-direction: column;
-  margin-bottom: 1rem;
+  margin-bottom: 12px; /* spacing ด้านล่าง */
+  min-width: 100px;    /* ป้องกัน input แคบเกินไป */
 }
 
 /* ป้ายชื่อ */
 .formGroup label {
   font-weight: 600;
   color: #374151;
-  margin-bottom: 0.5rem;
+  font-size: 14px;
+  margin-bottom: 4px; /* spacing label กับ input เล็กลง */
 }
 
 /* ช่องกรอกข้อมูล */
-.formGroup input {
-  padding: 10px 12px;
+.formGroup input,
+.formGroup .categorySelect {
+  padding: 6px 10px;   /* ลดขนาด input ให้เล็กลง */
   border: 1px solid #d1d5db;
   border-radius: 8px;
+  font-size: 14px;
   outline: none;
+  max-width: 100%; 
   transition: border-color 0.2s, box-shadow 0.2s;
 }
 
-.formGroup input:focus {
+.formGroup input:focus,
+.formGroup .categorySelect:focus {
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+  background-color: #ffffff;
 }
 
-/* ---- 🔥 สไตล์ select หมวดหมู่ (เพิ่มใหม่) ---- */
-
+/* ---- select ---- */
 .categorySelect {
-  padding: 10px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
   background-color: #f9fafb;
-  font-size: 15px;
   font-weight: 500;
   color: #374151;
-  outline: none;
   cursor: pointer;
   transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
 }
@@ -67,30 +59,33 @@
   background-color: #f3f4f6;
 }
 
-.categorySelect:focus {
-  border-color: #3b82f6;
-  background-color: #ffffff;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
-}
-
 .categorySelect option {
-  padding: 10px;
-  font-size: 15px;
+  padding: 8px;
+  font-size: 14px;
 }
 
-/* ปุ่ม */
+/* ปุ่ม Submit / Action */
 .formButton {
-  width: 100%;
-  background-color: #16a34a;
+  width: 50%;          /* ลดความกว้างปุ่ม */
+  background-color: #16a34a; /* สีเดิม */
   color: white;
-  padding: 10px 0;
+  padding: 10px 0;     /* ลดความสูงปุ่ม */
   border: none;
   border-radius: 8px;
   font-weight: bold;
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.2s;
+  margin: 16px auto 0 auto; /* กึ่งกลาง container */
+  display: block;
 }
 
-.formButton:hover {
-  background-color: #15803d;
+/* หัวข้อฟอร์ม */
+.formTitle {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #1f2937;
+  text-align: center;
+  margin-bottom: 16px;
 }
+

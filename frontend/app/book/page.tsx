@@ -4,7 +4,6 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import style from "./style.module.css";
 
-// ➤ Interface ของข้อมูล
 interface Item {
   nBookID: number;
   sNamebook: string;
@@ -12,21 +11,23 @@ interface Item {
   nQuantity: number;
   sAuthor: string;
   sCategory: string;
-  dReleaseDate: string; // ดึงจาก API เป็น string
+  dReleaseDate: string;
 }
 
 export default function ListPage() {
   const [items, setItems] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // ➤ ดึงข้อมูลจาก Backend API
+  // ➤ Pagination state
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
   useEffect(() => {
     async function fetchBooks() {
       try {
-        const res = await fetch("http://localhost:5256/api/Book/GetAllBooks", { mode: "cors" });
+        const res = await fetch("https://localhost:7073/api/Book/GetAllBooks", { mode: "cors" });
         if (!res.ok) throw new Error("Failed to fetch books");
         const data: Item[] = await res.json();
-        console.log("Fetched data:", data);
         setItems(data);
       } catch (error) {
         console.error(error);
@@ -38,31 +39,34 @@ export default function ListPage() {
     fetchBooks();
   }, []);
 
-  // ➤ ฟังก์ชันลบเฉพาะฝั่ง Frontend
-    const handleDelete = async (nBookID: number) => {
-      const confirmDelete = window.confirm("ต้องการลบรายการนี้หรือไม่?");
-      if (!confirmDelete) return;
+  const handleDelete = async (nBookID: number) => {
+    const confirmDelete = window.confirm("ต้องการลบรายการนี้หรือไม่?");
+    if (!confirmDelete) return;
 
-      try {
-        const res = await fetch(`http://localhost:5256/api/Book/DeleteBook/DeleteBook/${nBookID}`, {
-          method: "PUT", // soft delete ใช้ PUT
-          headers: { "Content-Type": "application/json" },
-        });
+    try {
+      const res = await fetch(`https://localhost:7073/api/Book/DeleteBook/DeleteBook/${nBookID}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+      });
 
-        if (!res.ok) throw new Error("Delete failed");
+      if (!res.ok) throw new Error("Delete failed");
 
-        // ถ้า delete สำเร็จ ลบออกจาก state
-        setItems((prev) => prev.filter((item) => item.nBookID !== nBookID));
-
-        alert("ลบสำเร็จ!");
-      } catch (err) {
-        console.error(err);
-        alert("ลบไม่สำเร็จ");
-      }
-    };
-
+      setItems((prev) => prev.filter((item) => item.nBookID !== nBookID));
+      alert("ลบสำเร็จ!");
+    } catch (err) {
+      console.error(err);
+      alert("ลบไม่สำเร็จ");
+    }
+  };
 
   if (loading) return <div>กำลังโหลดข้อมูล...</div>;
+
+  // ➤ คำนวณรายการที่จะแสดงตามหน้า
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = items.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil(items.length / itemsPerPage);
 
   return (
     <div>
@@ -88,9 +92,9 @@ export default function ListPage() {
             </tr>
           </thead>
           <tbody>
-            {items.map((item, index) => (
+            {currentItems.map((item, index) => (
               <tr key={item.nBookID}>
-                <td>{index + 1}</td>
+                <td>{indexOfFirstItem + index + 1}</td>
                 <td>{item.sNamebook}</td>
                 <td>{item.nPrice.toFixed(2)}</td>
                 <td>{item.nQuantity}</td>
@@ -116,6 +120,35 @@ export default function ListPage() {
             ))}
           </tbody>
         </table>
+        
+        {/* ➤ Pagination controls */}
+        <div className={style.pagination}>
+          <button
+            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            disabled={currentPage === 1}
+            className={style.pageBtn}
+          >
+            &#8592; {/* ← */}
+          </button>
+
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+            <button
+              key={num}
+              onClick={() => setCurrentPage(num)}
+              className={`${style.pageBtn} ${currentPage === num ? style.activePage : ""}`}
+            >
+              {num}
+            </button>
+          ))}
+
+          <button
+            onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={style.pageBtn}
+          >
+            &#8594; {/* → */}
+          </button>
+        </div>
       </div>
     </div>
   );

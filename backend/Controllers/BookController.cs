@@ -70,6 +70,14 @@ namespace backend2.Controllers
             return Ok(new { message = "Book deleted successfully" });
         }
 
+        [HttpGet("chart")]
+        public IActionResult GetBooksForChart()
+        {
+            var data = _bookService.GetBooksForChart();
+            return Ok(data);
+        }
+
+
 
     }
 }

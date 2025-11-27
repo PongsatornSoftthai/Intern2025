@@ -16,7 +16,7 @@ export default function AddPage() {
     e.preventDefault();
 
     try {
-      const res = await fetch("http://localhost:5256/api/Book/AddBook", {
+      const res = await fetch("https://localhost:7073/api/Book/AddBook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

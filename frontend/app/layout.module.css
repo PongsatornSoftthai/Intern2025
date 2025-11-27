@@ -4,8 +4,8 @@
   color: white;
   text-align: center;
   font-weight: bold;
-  font-size: 1.2rem; /* ลดขนาดตัวอักษรอีกนิด */
-  padding: 2px 0;  /* ลดความสูง */
+  font-size: 1.1rem; /* ลดขนาดตัวอักษรอีกนิด */
+  padding: 1.3px 0;  /* ลดความสูง */
   box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* shadow เบา */
   position: sticky;
   top: 0;

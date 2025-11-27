@@ -7,6 +7,17 @@
       "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:service\\bookservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:controllers\\bookcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -17,13 +28,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:data\\mydbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9242F974-A846-40BC-9C49-B8DF4BFBA8E6}|backend.csproj|d:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\intern2025\\backend\\backend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
@@ -41,7 +45,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 229,
-          "SelectedChildIndex": 26,
+          "SelectedChildIndex": 28,
           "Children": [
             {
               "$type": "Bookmark",
@@ -144,16 +148,34 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-11-27T06:40:05.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAHAAAAAAAAAA==",
+              "ViewState": "AgIAABoAAAAAAAAAAAAqwCgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T03:50:15.358Z"
+              "WhenOpened": "2025-11-24T03:50:15.358Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -163,18 +185,14 @@
               "RelativeDocumentMoniker": "Service\\BookService.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Service\\BookService.cs",
               "RelativeToolTip": "Service\\BookService.cs",
-              "ViewState": "AgIAAGIAAAAAAAAAAAAUwHIAAAArAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAUwFEAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T03:51:26.326Z",
               "EditorCaption": ""
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "MyDbContext.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Data\\MyDbContext.cs",
               "RelativeDocumentMoniker": "Data\\MyDbContext.cs",
@@ -182,35 +200,35 @@
               "RelativeToolTip": "Data\\MyDbContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-24T03:06:25.184Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-24T03:06:25.184Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "BookController.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Controllers\\BookController.cs",
               "RelativeDocumentMoniker": "Controllers\\BookController.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Controllers\\BookController.cs",
               "RelativeToolTip": "Controllers\\BookController.cs",
-              "ViewState": "AgIAADMAAAAAAAAAAAAowEgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEkAAAAAAAAAAAA/wE4AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T06:56:36.646Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
-              "ViewState": "AgIAAPYUAAAAAAAAAAAwwBEVAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAIoUAAAAAAAAAAAwwBEVAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2025-11-24T03:17:53.471Z"
+              "WhenOpened": "2025-11-24T03:17:53.471Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "backend.csproj",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\backend.csproj",
               "RelativeDocumentMoniker": "backend.csproj",
@@ -218,11 +236,12 @@
               "RelativeToolTip": "backend.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-24T04:48:31.892Z"
+              "WhenOpened": "2025-11-24T04:48:31.892Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -236,7 +255,7 @@
         },
         {
           "DockedWidth": 171,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Bookmark",
@@ -263,21 +282,21 @@
               "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
             },
             {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "BookDto.cs",
               "DocumentMoniker": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Model\\BookDto.cs",
               "RelativeDocumentMoniker": "Model\\BookDto.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Model\\BookDto.cs",
               "RelativeToolTip": "Model\\BookDto.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAABAAAAAAAAAA==",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAswA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T07:49:27.969Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         },
