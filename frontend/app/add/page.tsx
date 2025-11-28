@@ -133,10 +133,12 @@ export default function AddPage() {
           </div>
 
           
+          <div className={style.buttonWrapper}>
+            <button type="submit" className={style.formButton}>
+              เพิ่มหนังสือ
+            </button>
+          </div>
 
-          <button type="submit" className={style.formButton}>
-            เพิ่มหนังสือ
-          </button>
         </form>
       </div>
     </div>

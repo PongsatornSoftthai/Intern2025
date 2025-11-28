@@ -13,7 +13,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={styles.body}>
         {/* Header */}
         <header className={styles.header}>
-          <h1>คลังหนังสือ📚</h1>
+          <h1>Bookstore📚</h1>
         </header>
 
         {/* Layout Content */}

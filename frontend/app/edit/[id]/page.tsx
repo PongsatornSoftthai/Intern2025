@@ -123,7 +123,11 @@ export default function EditPage() {
           <label>วันที่วางจำหน่าย</label>
           <input type="date" value={releaseDate} onChange={(e) => setReleaseDate(e.target.value)} /> 
         </div>
-        <button type="submit" className={styles.formButton}> บันทึกการแก้ไข </button>
+                  <div className={styles.buttonWrapper}>
+            <button type="submit" className={styles.formButton}>
+              บันทึกการแก้ไข
+            </button>
+          </div>
       </form>
     </div> 
   ); 

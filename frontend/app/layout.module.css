@@ -1,17 +1,33 @@
 /* Header */
 .header {
-  background: linear-gradient(to right, #4f46e5, #7c3aed); /* ม่วงเข้ม → ม่วงอมฟ้า สวยสบายตา */
-  color: white;
+  background: linear-gradient(to right, #4f46e5, #7c3aed); /* ม่วงเข้ม → ม่วงอมฟ้า */
+  color: #ffffff;
   text-align: center;
-  font-weight: bold;
-  font-size: 1.1rem; /* ลดขนาดตัวอักษรอีกนิด */
-  padding: 1.3px 0;  /* ลดความสูง */
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08); /* shadow เบา */
+  
+  /* ฟอนต์ */
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, sans-serif; 
+  font-weight: 600; 
+  font-size: 1.2rem; 
+  letter-spacing: 1px; 
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2); /* เงาตัวอักษรบางๆ เพิ่มมิติ */
+  
+
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15); /* เงาอ่อน ๆ มีมิติ */
+  
   position: sticky;
   top: 0;
   z-index: 1000;
-  border-radius: 0 0 6px 6px;
+  border-radius: 0 0 10px 10px; /* ปรับให้โค้งมนขึ้น */
+  
+  transition: all 0.3s ease; /* สำหรับเอฟเฟกต์ smooth */
 }
+
+/* ตัวอย่าง effect hover เล็กน้อย */
+.header:hover {
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  letter-spacing: 1.2px;
+}
+
 
 /* Layout */
 .content {
@@ -73,7 +89,7 @@
   background-color: #4f46e5; /* ม่วงเข้มเข้ากับ Header */
   color: white;
   text-align: center;
-  padding: 14px 0; /* ลดความสูง */
+  padding: 12px 0; /* ลดความสูง */
   font-weight: 500;
   box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
   border-radius: 6px 6px 0 0;
