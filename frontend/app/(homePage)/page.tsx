@@ -13,15 +13,17 @@ export default function MenuCards() {
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>ยินดีต้อนรับเข้าสู่ระบบจัดการการสอน</h1>
-      <div className={styles.cardsContainer}>
+      {/* <div className={styles.cardsContainer}>
         {menuItems.map((item, index) => (
           <a key={index} href={item.href} className={styles.card}>
             {item.icon}
             <span>{item.label}</span>
           </a>
         ))}
+      </div> */}
+      <div className={styles.teacherStackChart}>
+        <TeacherStackChart />
       </div>
-      <TeacherStackChart />
     </div>
   );
 }

@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import styles from "../../css/addForm.module.css";
 import { useRouter } from "next/navigation";
+import { CustomSelect } from "@/app/components/customSelect";
 
 interface IFormData {
     sTeacherId: string;
@@ -15,6 +16,18 @@ interface IFormData {
     sFaculty: string;
 }
 
+const faculties = [
+    { value: "วิทยาศาสตร์", label: "วิทยาศาสตร์" },
+    { value: "ศึกษาศาสตร์", label: "ศึกษาศาสตร์" },
+    { value: "รัฐศาสตร์", label: "รัฐศาสตร์" },
+    { value: "สาธารณสุข", label: "สาธารณสุข" },
+];
+
+const genderOptions = [
+    { value: "ชาย", label: "ชาย" },
+    { value: "หญิง", label: "หญิง" },
+];
+
 export default function AddTeacher() {
 
     const router = useRouter();
@@ -27,7 +40,7 @@ export default function AddTeacher() {
         sAddress: "",
         sPhoneNumber: "",
         sSubjectId: "",
-        sFaculty:"",
+        sFaculty: "",
     });
 
     const [teachers, setTeachers] = useState<IFormData[]>([]);
@@ -44,7 +57,7 @@ export default function AddTeacher() {
         e.preventDefault();
 
         //เช็คว่ามีค่าบ้าง
-        if (!formData.sTeacherId || !formData.sFirstName || !formData.sLastName || !formData.sGender || !formData.dBirthDate || !formData.sAddress || !formData.sPhoneNumber ||!formData.sFaculty|| !formData.sSubjectId) {
+        if (!formData.sTeacherId || !formData.sFirstName || !formData.sLastName || !formData.sGender || !formData.dBirthDate || !formData.sAddress || !formData.sPhoneNumber || !formData.sFaculty || !formData.sSubjectId) {
             alert("กรุณากรอกข้อมูลให้ครบถ้วน");
             return;
         }
@@ -86,28 +99,27 @@ export default function AddTeacher() {
                 alert(result.message);
             } else {
                 alert(result.message);
+                //เคลียร์ฟอร์ม
+                setFormData({
+                    sTeacherId: "",
+                    sFirstName: "",
+                    sLastName: "",
+                    sGender: "",
+                    dBirthDate: "",// เก็บเป็น string จาก backend
+                    sAddress: "",
+                    sPhoneNumber: "",
+                    sFaculty: "",
+                    sSubjectId: "",
+                });
+
+                router.push("/teachers");
             }
-
-            //เคลียร์ฟอร์ม
-            setFormData({
-                sTeacherId: "",
-                sFirstName: "",
-                sLastName: "",
-                sGender: "",
-                dBirthDate: "",// เก็บเป็น string จาก backend
-                sAddress: "",
-                sPhoneNumber: "",
-                sFaculty:"",
-                sSubjectId: "",
-            });
-
-            router.push("/teachers");
         } catch (err) {
             alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
         }
 
     };
-    
+
     return (
         <div>
             <div className={styles.container}>
@@ -147,16 +159,13 @@ export default function AddTeacher() {
                     </div>
                     <div>
                         <label >เพศ: </label>
-                        <select
-                            name="sGender"
+                        <CustomSelect
+                            options={genderOptions}
                             value={formData.sGender}
-                            onChange={handleChange}
-                            className={styles.input}
-                        >
-                            <option value="">--เลือกเพศ--</option>
-                            <option value="ชาย">ชาย</option>
-                            <option value="หญิง">หญิง</option>
-                        </select>
+                            onChange={(val) => setFormData(prev => ({ ...prev, sGender: val }))}
+                            placeholder="--เลือกเพศ--"
+
+                        />
                     </div>
                     <div>
                         <label >วันเกิด: </label>
@@ -192,18 +201,12 @@ export default function AddTeacher() {
                     </div>
                     <div>
                         <label >สังกัดคณะ: </label>
-                        <select
-                            name="sFaculty"
+                        <CustomSelect
+                            options={faculties}
                             value={formData.sFaculty}
-                            onChange={handleChange}
-                            className={styles.input}
-                        >
-                            <option value="">--เลือกคณะ--</option>
-                            <option value="วิทยาศาสตร์">วิทยาศาสตร์</option>
-                            <option value="ศึกษาศาสตร์">ศึกษาศาสตร์</option>
-                            <option value="รัฐศาสตร์">รัฐศาสตร์</option>
-                            <option value="สาธารณสุข">สาธารณสุข</option>
-                        </select>
+                            onChange={(val) => setFormData(prev => ({ ...prev, sFaculty: val }))}
+                            placeholder="--เลือกคณะ--"
+                        />
                     </div>
                     <div>
                         <label >รหัสวิชาที่สอน: </label>

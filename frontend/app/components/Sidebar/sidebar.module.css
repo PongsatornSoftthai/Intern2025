@@ -4,15 +4,15 @@
 
 .sidebar {
     width: 220px;
-    background-color: #eeeeee;
+    background-color: #D7F5E6;
     padding: 20px;
     padding-top: 10px;
     position: fixed;
     z-index: 50;
     /* Stay on top */
-    top: 10%; 
+    top: 10%;
     /* ระยะจากขอบบน */
-    bottom: 0; 
+    bottom: 0;
 }
 
 .nav ul {
@@ -27,7 +27,7 @@
 }
 
 .nav a {
-    color: #27ac1f;
+    color: #2f9551;
     text-decoration: none;
     font-size: 13px;
     padding: 10px 15px;
@@ -39,11 +39,16 @@
     /* ระยะห่างระหว่างไอคอนกับข้อความ */
     border-radius: 8px;
     transition: background-color 0.3s, color 0.3s;
-    
+
 }
 
 
 .nav a:hover {
-    background-color: #27ac1f;
+    background-color: #5DC47F;
     color: white;
+}
+
+.sidebar ul li.active a {
+    background-color: #5DC47F;
+    color: #fff;
 }

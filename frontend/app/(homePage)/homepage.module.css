@@ -1,19 +1,22 @@
-.container{
+.container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 10px;
+    margin: 5px;
 }
-.title{
-    font-size: 30px;
-    color: #e57c2f ;
+
+.title {
+    font-size: 20px;
+    color: #473c08;
     font-weight: bold;
-    background-color: #ffffff;
-    padding: 25px;
-    border-radius: 20px;
+    background-color: #faf9f7;
+    padding: 20px;
+    border: #e7be0a 1px solid;
+    border-radius: 50px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
+
 .cardsContainer {
     display: flex;
     flex-wrap: wrap;
@@ -33,10 +36,11 @@
     justify-content: center;
     width: 180px;
     height: 150px;
-    background-color: #e57c2f;
-    color: white;
+    background-color: #e3d9b1;
+    color: #473c08;
     text-decoration: none;
     border-radius: 12px;
+    border: #EED566 2px solid;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s, background-color 0.3s;
     font-size: 1rem;
@@ -51,6 +55,16 @@
 
 .card:hover {
     transform: translateY(-5px);
-    background-color: #ffffff;
-    color: #e57c2f;
+    background-color: #EED566;
+    color: black;
+    border: #EED566 2px solid;
+    box-shadow: 0 4px 10px #EED566;
+}
+
+.teacherStackChart {
+    background-color: hsl(0, 0%, 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    width: 80%;
+    margin-top: 20px;
 }

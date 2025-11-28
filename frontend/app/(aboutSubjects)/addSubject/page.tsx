@@ -1,7 +1,7 @@
 'use client'
 import styles from "../../css/addForm.module.css";
 import { useState, useEffect, use } from "react";
-import {useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 interface IFormData {
     sSubjectId: string;
@@ -59,17 +59,14 @@ export default function AddSubject() {
                 alert(result.message);
             } else {
                 alert(result.message);
+                //เคลียร์ฟอร์ม
+                setFormData({
+                    sSubjectId: "",
+                    sName: "",
+                    nCredit: 0,
+                });
+                router.push("/subjects");
             }
-
-            //เคลียร์ฟอร์ม
-            setFormData({
-                sSubjectId: "",
-                sName: "",
-                nCredit: 0,
-            });
-
-            router.push("/subjects");
-
         } catch (err) {
             alert("เกิดข้อผิดพลาดในการเชื่อมต่อ");
         }

@@ -58,6 +58,17 @@ export default function SubByFacChart() {
       })
     );
 
+    yAxis.children.push(
+      am5.Label.new(root ,{
+        text: "(คณะ)",
+        y: am5.percent(0),
+        x:am5.percent(20),
+        centerY: am5.percent(50),
+        fontSize: 16,
+        fill:am5.color("#000")
+      })
+    );
+
     const xAxis = chart.xAxes.push(
       am5xy.ValueAxis.new(root, {
         min: 0,
@@ -90,8 +101,8 @@ export default function SubByFacChart() {
       return series;
     }
 
-    createSeries("male", "ชาย", "#003366");
-    createSeries("female", "หญิง", "#0055aa");
+    createSeries("male", "ชาย", "#EED566");
+    createSeries("female", "หญิง", "#EF976c");
 
     const legend = chart.children.push(am5.Legend.new(root, {}));
     legend.data.setAll(chart.series.values);
@@ -104,7 +115,7 @@ export default function SubByFacChart() {
       <h2 style={{ textAlign: "center", marginTop: 20 ,color:"black" }}>
         จำนวนอาจารย์จำแนกตามคณะและเพศ
       </h2>
-      <div id="chartdiv" style={{ width: "100%", height: 400 }}></div>
+      <div id="chartdiv"  style={{ width: "100%", height: 500 }}></div>
     </div>
   );
 }
