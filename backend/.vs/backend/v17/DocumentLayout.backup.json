@@ -45,7 +45,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 229,
-          "SelectedChildIndex": 28,
+          "SelectedChildIndex": 27,
           "Children": [
             {
               "$type": "Bookmark",
@@ -148,10 +148,6 @@
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "launchSettings.json",
@@ -245,6 +241,10 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-11-24T03:06:20.667Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
             }
           ]
         },
@@ -288,7 +288,7 @@
               "RelativeDocumentMoniker": "Model\\BookDto.cs",
               "ToolTip": "D:\\\u0E2A\u0E2B\u0E01\u0E34\u0E08\u0E28\u0E36\u0E01\u0E29\u0E322\\Intern2025\\backend\\Model\\BookDto.cs",
               "RelativeToolTip": "Model\\BookDto.cs",
-              "ViewState": "AgIAAAIAAAAAAAAAAAA9wA0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAowA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-24T07:49:27.969Z",
               "EditorCaption": ""
